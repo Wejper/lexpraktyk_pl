@@ -1,0 +1,113 @@
+---
+export const prerender = false;
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { tursoExecute } from '../../utils/turso';
+
+const { id } = Astro.params;
+
+interface Kancelaria {
+  id: number;
+  name: string;
+  description: string;
+  city: string;
+  voivodeship: string;
+  specializations: string;
+  since_year: number | null;
+  logo_url: string | null;
+  rating: number | null;
+  reviews_count: number;
+  featured: number;
+  verified: number;
+  status: string;
+  created_at: string;
+}
+
+let company: Kancelaria | null = null;
+
+try {
+  const rows = await tursoExecute(
+    "SELECT id, name, description, city, voivodeship, specializations, since_year, logo_url, rating, reviews_count, featured, verified, status, created_at FROM kancelarie WHERE id=? AND status='approved'",
+    [Number(id)]
+  );
+  company = rows[0] as unknown as Kancelaria ?? null;
+} catch (e) {
+  console.error('[kancelarie profile]', e);
+}
+
+if (!company) {
+  return Astro.redirect('/kancelarie', 302);
+}
+
+const specs = company.specializations ? company.specializations.split(',').map(s => s.trim()).filter(Boolean) : [];
+
+function initials(name: string): string {
+  return name.split(/\s+/).slice(0, 2).map(w => w[0]?.toUpperCase() ?? '').join('');
+}
+---
+
+<BaseLayout
+  title={`${company.name} – Kancelarie – lexpraktyk.pl`}
+  description={company.description.slice(0, 155)}
+>
+  <div style="max-width:720px;">
+
+    <div style="padding:8px 0 28px; border-bottom:1px solid var(--rule);">
+      <div class="t-mono">
+        <a href="/">lexpraktyk.pl</a> / <a href="/kancelarie">kancelarie</a> / {company.name}
+      </div>
+    </div>
+
+    <div style="margin-top:32px; display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap;">
+
+      <div style="flex-shrink:0;">
+        {company.logo_url ? (
+          <img src={company.logo_url} alt={company.name} style="width:80px; height:80px; border-radius:6px; object-fit:cover;" />
+        ) : (
+          <div style="width:80px; height:80px; border-radius:6px; background:var(--warm-bg); display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; color:var(--warm-deep); border:1px solid var(--warm-soft);">
+            {initials(company.name)}
+          </div>
+        )}
+      </div>
+
+      <div style="flex:1; min-width:0;">
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <h1 class="h-headline" style="font-size:24px; margin:0;">{company.name}</h1>
+          {company.verified ? <span class="tag warm">✓ zweryfikowana</span> : null}
+          {company.featured ? <span class="tag warm">wyróżniona</span> : null}
+        </div>
+
+        <div class="t-mono" style="margin-top:6px; font-size:13px;">
+          {[company.city, company.voivodeship].filter(Boolean).join(', ')}
+          {company.since_year ? ` · od ${company.since_year}` : ''}
+        </div>
+
+        {company.rating != null && (
+          <div style="display:flex; align-items:center; gap:4px; margin-top:8px;">
+            <span style="color:var(--warm); font-size:16px;">★</span>
+            <span style="font-weight:600;">{company.rating.toFixed(1)}</span>
+            <span class="t-mono">({company.reviews_count} opinii)</span>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:28px; padding:24px;">
+      <h2 class="h-eyebrow" style="margin:0 0 12px;">O kancelarii</h2>
+      <p style="margin:0; line-height:1.7;">{company.description}</p>
+    </div>
+
+    {specs.length > 0 && (
+      <div class="card" style="margin-top:16px; padding:24px;">
+        <h2 class="h-eyebrow" style="margin:0 0 12px;">Specjalizacje</h2>
+        <div style="display:flex; flex-wrap:wrap; gap:6px;">
+          {specs.map(s => <span class="tag warm">{s}</span>)}
+        </div>
+      </div>
+    )}
+
+    <div style="margin-top:28px;">
+      <a href="/kancelarie" class="btn">← Wróć do katalogu</a>
+    </div>
+
+  </div>
+</BaseLayout>

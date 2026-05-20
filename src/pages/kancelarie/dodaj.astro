@@ -1,0 +1,173 @@
+---
+export const prerender = false;
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Dodaj kancelarię – lexpraktyk.pl"
+  description="Dodaj kancelarię lub profil prawnika do katalogu lexpraktyk.pl. 4 pola, weryfikacja w 24h, listing za darmo."
+>
+
+  <div id="success-msg" style="display:none;">
+    <div class="card card-warm" style="padding:40px; text-align:center; max-width:480px; margin:40px auto;">
+      <div style="font-size:48px; line-height:1;">✓</div>
+      <h2 class="h-headline" style="font-size:22px; margin:12px 0 8px; color:var(--warm-deep);">Dziękujemy!</h2>
+      <p style="color:var(--warm-deep); margin:0 0 8px;">Zgłoszenie trafiło do moderacji. Czas weryfikacji: do 24h roboczych.</p>
+      <a href="/kancelarie" class="btn btn-primary" style="margin-top:16px; display:inline-flex;">← Wróć do katalogu</a>
+    </div>
+  </div>
+
+  <div id="form-wrap" style="max-width:720px;">
+
+    <div style="padding: 8px 0 28px; border-bottom: 1px solid var(--rule);">
+      <div class="t-mono">
+        <a href="/">lexpraktyk.pl</a> / <a href="/kancelarie">kancelarie</a> / dodaj kancelarię
+      </div>
+      <h1 class="h-display" style="font-size:30px; margin:14px 0 6px;">Dodaj kancelarię</h1>
+      <p class="t-script" style="font-size:13.5px; margin:0;">4 pola · weryfikacja w 24h · listing za darmo, na zawsze.</p>
+    </div>
+
+    <form id="submit-form" style="margin-top:32px; display:flex; flex-direction:column; gap:24px;" method="post" action="#">
+
+      <div class="field">
+        <label for="field-name">01 · Nazwa kancelarii <span class="req">*</span></label>
+        <input id="field-name" type="text" placeholder="np. Kancelaria Adwokacka Jan Kowalski" required />
+        <span class="hint">Pełna nazwa jak w rejestrze adwokatów / radców / KRS.</span>
+      </div>
+
+      <div class="field">
+        <label for="field-email">02 · Email kontaktowy <span class="req">*</span></label>
+        <input id="field-email" type="email" placeholder="kontakt@kancelaria.pl" required />
+        <span class="hint">Nie publikujemy — używamy tylko do kontaktu w sprawie weryfikacji.</span>
+      </div>
+
+      <div class="field">
+        <label for="field-desc">03 · Opis kancelarii <span class="req">*</span></label>
+        <textarea id="field-desc" placeholder="1–3 zdania: specjalizacje, lokalizacja, doświadczenie. Konkretnie, bez marketingowego żargonu." style="min-height:140px;"></textarea>
+        <div style="display:flex; justify-content:space-between;">
+          <span class="hint">Przykład: „Kancelaria adwokacka specjalizująca się w prawie spadkowym i rodzinnym. Obsługujemy klientów z Warszawy i okolic od 2010 roku."</span>
+          <span class="hint" id="desc-counter">0 / 400</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>04 · Logo kancelarii</label>
+        <div class="filedrop" id="logo-drop">
+          <div style="font-size:20px; color:var(--ink-faint);">＋</div>
+          <div style="font-weight:500;">Przeciągnij plik lub kliknij, żeby wybrać</div>
+          <span class="hint">PNG, SVG lub JPG · kwadratowe · max 2MB</span>
+        </div>
+        <span class="hint">Opcjonalne, ale kancelarie z logo dostają więcej kliknięć w profil.</span>
+      </div>
+
+      <div class="rule"></div>
+
+      <label class="check">
+        <input id="field-terms" type="checkbox" />
+        <span>
+          Akceptuję <a href="#" style="color:var(--warm-deep); text-decoration:underline;">regulamin</a> i
+          <a href="#" style="color:var(--warm-deep); text-decoration:underline;">politykę prywatności</a>.
+          Oświadczam, że jestem upoważniony do reprezentowania kancelarii.
+        </span>
+      </label>
+
+      <div style="display:flex; align-items:center; gap:12px; padding-top:8px; flex-wrap:wrap;">
+        <button type="submit" id="submit-btn" class="btn btn-warm btn-lg" disabled style="opacity:0.5; cursor:not-allowed;">
+          Wyślij zgłoszenie →
+        </button>
+        <a href="/kancelarie" class="btn">Anuluj</a>
+        <span id="submit-error" style="display:none; color:var(--warm-deep); font-size:14px;"></span>
+      </div>
+
+      <div class="card" style="padding:18px; background:var(--paper-2); margin-top:8px;">
+        <h3 class="h-eyebrow" style="margin:0 0 10px;">Co dalej?</h3>
+        <ol style="padding-left:0; list-style:none; margin:0; display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;">
+          <li>
+            <div class="h-display" style="font-size:20px; color:var(--warm);">01</div>
+            <div style="font-weight:500; font-size:14px; margin-top:2px;">Wysyłasz</div>
+            <div class="t-small" style="margin-top:2px;">Wypełniasz 4 pola i wysyłasz.</div>
+          </li>
+          <li>
+            <div class="h-display" style="font-size:20px; color:var(--warm);">02</div>
+            <div style="font-weight:500; font-size:14px; margin-top:2px;">Weryfikujemy</div>
+            <div class="t-small" style="margin-top:2px;">Ręcznie sprawdzamy dane (~24h).</div>
+          </li>
+          <li>
+            <div class="h-display" style="font-size:20px; color:var(--warm);">03</div>
+            <div style="font-weight:500; font-size:14px; margin-top:2px;">Publikujemy</div>
+            <div class="t-small" style="margin-top:2px;">Dostajesz email + listing w katalogu.</div>
+          </li>
+        </ol>
+      </div>
+
+    </form>
+  </div>
+
+</BaseLayout>
+
+<script>
+const form = document.getElementById('submit-form') as HTMLFormElement | null;
+const nameInput = document.getElementById('field-name') as HTMLInputElement | null;
+const emailInput = document.getElementById('field-email') as HTMLInputElement | null;
+const descInput = document.getElementById('field-desc') as HTMLTextAreaElement | null;
+const termsCheck = document.getElementById('field-terms') as HTMLInputElement | null;
+const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+const counter = document.getElementById('desc-counter');
+const successMsg = document.getElementById('success-msg');
+const formWrap = document.getElementById('form-wrap');
+const submitError = document.getElementById('submit-error');
+
+function validate() {
+  const ok = !!(
+    nameInput?.value.trim() &&
+    emailInput?.value.includes('@') &&
+    (descInput?.value.length ?? 0) > 30 &&
+    termsCheck?.checked
+  );
+  if (submitBtn) {
+    submitBtn.disabled = !ok;
+    submitBtn.style.opacity = ok ? '1' : '0.5';
+    submitBtn.style.cursor = ok ? 'pointer' : 'not-allowed';
+  }
+}
+
+[nameInput, emailInput, descInput].forEach(el => el?.addEventListener('input', validate));
+termsCheck?.addEventListener('change', validate);
+descInput?.addEventListener('input', () => {
+  if (counter && descInput) counter.textContent = descInput.value.length + ' / 400';
+});
+
+form?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (submitError) submitError.style.display = 'none';
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Wysyłanie…'; submitBtn.style.opacity = '0.7'; }
+
+  try {
+    const res = await fetch('/api/kancelarie/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: nameInput?.value.trim() ?? '',
+        email: emailInput?.value.trim() ?? '',
+        description: descInput?.value.trim() ?? '',
+      }),
+    });
+
+    const data = await res.json() as { success?: boolean; error?: string };
+
+    if (data.success) {
+      if (formWrap) formWrap.style.display = 'none';
+      if (successMsg) successMsg.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      if (submitError) { submitError.textContent = data.error ?? 'Nieznany błąd.'; submitError.style.display = 'inline'; }
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Wyślij zgłoszenie →'; submitBtn.style.opacity = '1'; submitBtn.style.cursor = 'pointer'; }
+    }
+  } catch {
+    if (submitError) { submitError.textContent = 'Błąd połączenia. Spróbuj ponownie.'; submitError.style.display = 'inline'; }
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Wyślij zgłoszenie →'; submitBtn.style.opacity = '1'; submitBtn.style.cursor = 'pointer'; }
+  }
+});
+
+validate();
+</script>

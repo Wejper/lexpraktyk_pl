@@ -1,0 +1,292 @@
+---
+export const prerender = false;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { tursoExecute } from '../utils/turso';
+
+interface Kancelaria {
+  id: number;
+  name: string;
+  email: string;
+  description: string;
+  city: string;
+  voivodeship: string;
+  specializations: string;
+  since_year: number | null;
+  logo_url: string | null;
+  rating: number | null;
+  reviews_count: number;
+  featured: number;
+  verified: number;
+  status: string;
+  created_at: string;
+}
+
+let companies: Kancelaria[] = [];
+let fetchError = false;
+
+try {
+  const rows = await tursoExecute(
+    "SELECT * FROM kancelarie WHERE status='approved' ORDER BY featured DESC, created_at DESC"
+  );
+  companies = rows as unknown as Kancelaria[];
+} catch (e) {
+  console.error('[kancelarie page]', e);
+  fetchError = true;
+}
+
+function initials(name: string): string {
+  return name
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase() ?? '')
+    .join('');
+}
+---
+
+<BaseLayout
+  title="Kancelarie prawne – lexpraktyk.pl"
+  description="Katalog kancelarii i prawników z całej Polski. Dziedziczenie, nieruchomości, prawo rodzinne. Zweryfikowane, ocenione, kontaktowe."
+>
+
+  <div style="padding: 8px 0 28px; border-bottom: 1px solid var(--rule);">
+    <div class="t-mono"><a href="/">lexpraktyk.pl</a> / kancelarie</div>
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-top:16px; gap:24px; flex-wrap:wrap;">
+      <div>
+        <h1 class="h-display" style="font-size:38px; margin:0;">Kancelarie</h1>
+        <p class="t-script" style="font-size:14.5px; margin-top:6px;">Katalog kancelarii i prawników z całej Polski. Zweryfikowane, kontaktowe.</p>
+      </div>
+      <div class="hero-cta" style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+        <a href="/kancelarie/dodaj" class="btn btn-warm btn-lg">+ Dodaj kancelarię</a>
+        <span class="t-mono">~5 min · weryfikacja w 24h · za darmo</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card kancelarie-search" style="margin-top:24px; padding:14px; display:grid; grid-template-columns:1fr 1fr 200px auto; gap:10px; align-items:center;" id="search-bar">
+    <div class="field">
+      <input id="city-input" type="text" placeholder="Miasto lub kod pocztowy" />
+    </div>
+    <div class="field">
+      <select id="spec-select">
+        <option value="">Wszystkie specjalizacje</option>
+        <option>dziedziczenie i spadki</option>
+        <option>prawo rodzinne</option>
+        <option>nieruchomości</option>
+        <option>ochrona dóbr osobistych</option>
+        <option>prawo karne</option>
+        <option>prawo pracy</option>
+        <option>prawo gospodarcze</option>
+      </select>
+    </div>
+    <div class="field">
+      <select id="rating-select">
+        <option value="0">Ocena: wszystkie</option>
+        <option value="4">Ocena: ★ 4+</option>
+        <option value="4.5">Ocena: ★ 4.5+</option>
+      </select>
+    </div>
+    <button class="btn btn-primary btn-lg" id="search-btn">Szukaj</button>
+  </div>
+
+  <div class="kancelarie-grid" style="display:grid; grid-template-columns:240px 1fr; gap:32px; margin-top:32px; align-items:start;">
+
+    <aside class="kancelarie-sidebar" style="display:flex; flex-direction:column; gap:20px; align-self:flex-start;">
+      <button class="btn sidebar-toggle" id="sidebar-toggle" style="display:none; width:100%; justify-content:space-between;">
+        Filtry <span id="sidebar-arrow">▼</span>
+      </button>
+      <div id="sidebar-content" class="sidebar-content" style="flex-direction:column; gap:20px;">
+        <div class="card" style="padding:18px;">
+          <h3 class="h-eyebrow" style="margin:0 0 12px;">Województwo</h3>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            {['mazowieckie','śląskie','małopolskie','wielkopolskie','dolnośląskie','pomorskie'].map(v => (
+              <a href="#" class="voiv-link" data-voiv={v} style="display:flex; justify-content:space-between; align-items:baseline; padding:4px 0; border-bottom:1px solid var(--rule);">
+                <span style="font-size:14px;">{v}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div class="card" style="padding:18px;">
+          <h3 class="h-eyebrow" style="margin:0 0 12px;">Specjalizacja</h3>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            {['dziedziczenie i spadki','prawo rodzinne','nieruchomości','ochrona dóbr osobistych','prawo karne','prawo pracy','prawo gospodarcze'].map(s => (
+              <label class="check" style="font-size:14px;"><input type="checkbox" class="spec-check" value={s} /><span>{s}</span></label>
+            ))}
+          </div>
+        </div>
+
+        <div class="card" style="padding:18px;">
+          <h3 class="h-eyebrow" style="margin:0 0 12px;">Dodatkowo</h3>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <label class="check" style="font-size:14px;"><input type="checkbox" checked /><span>weryfikowane</span></label>
+            <label class="check" style="font-size:14px;"><input type="checkbox" /><span>adwokat / radca prawny</span></label>
+            <label class="check" style="font-size:14px;"><input type="checkbox" /><span>pierwsza porada bezpłatna</span></label>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <section>
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid var(--rule); flex-wrap:wrap;">
+        <span class="t-mono">Sortuj:</span>
+        <button class="btn btn-sm btn-primary sort-btn" data-sort="popularne">popularne</button>
+        <button class="btn btn-sm btn-ghost sort-btn" data-sort="ocena">ocena</button>
+        <button class="btn btn-sm btn-ghost sort-btn" data-sort="najnowsze">najnowsze</button>
+        <div style="flex:1;"></div>
+        <span class="t-mono" id="results-count">{companies.length} z {companies.length} kancelarii</span>
+      </div>
+
+      {fetchError && (
+        <div class="card" style="padding:32px; text-align:center; color:var(--ink-soft);">
+          <p>Nie udało się załadować listy kancelarii. Spróbuj odświeżyć stronę.</p>
+        </div>
+      )}
+
+      {!fetchError && companies.length === 0 && (
+        <div class="card" style="padding:48px 32px; text-align:center;">
+          <div style="font-size:40px; line-height:1; margin-bottom:12px;">⚖️</div>
+          <h2 class="h-headline" style="font-size:20px; margin:0 0 8px;">Brak kancelarii w katalogu</h2>
+          <p class="t-small" style="margin:0 0 20px; color:var(--ink-soft);">
+            Katalog jest jeszcze pusty. Bądź pierwszą kancelarią na lexpraktyk.pl!
+          </p>
+          <a href="/kancelarie/dodaj" class="btn btn-warm btn-lg">+ Dodaj kancelarię</a>
+        </div>
+      )}
+
+      {!fetchError && companies.length > 0 && (
+        <div class="companies-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;" id="companies-grid">
+          {companies.map((c) => {
+            const isFeatured = c.featured === 1;
+            const locationStr = [c.city, c.voivodeship].filter(Boolean).join(', ');
+            const specs = c.specializations
+              ? c.specializations.split(',').map((s) => s.trim()).filter(Boolean)
+              : [];
+
+            return (
+              <div
+                class="card company-card"
+                data-location={`${c.city.toLowerCase()} ${c.voivodeship.toLowerCase()}`}
+                data-specs={c.specializations.toLowerCase()}
+                data-rating={c.rating ?? '0'}
+                data-since={c.since_year ?? ''}
+                style={`padding:20px; display:flex; flex-direction:column; gap:12px; height:100%;${isFeatured ? ' border-color:var(--warm); background:var(--warm-bg);' : ''}`}
+              >
+                <div style="display:flex; align-items:flex-start; gap:14px;">
+                  {c.logo_url ? (
+                    <img src={c.logo_url} alt={c.name} width="56" height="56"
+                      style="width:56px; height:56px; border-radius:8px; object-fit:cover; flex-shrink:0;" />
+                  ) : (
+                    <div style={`width:56px; height:56px; border-radius:8px; background:${isFeatured ? 'var(--warm)' : 'var(--paper-3)'}; color:${isFeatured ? '#fff' : 'var(--ink)'}; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-weight:600; font-size:17px; flex-shrink:0;`}>
+                      {initials(c.name)}
+                    </div>
+                  )}
+                  <div style="flex:1; min-width:0;">
+                    <div style="display:flex; align-items:center; gap:6px; margin-bottom:2px; flex-wrap:wrap;">
+                      {isFeatured && <span class="tag warm">wyróżniona</span>}
+                      {c.since_year && <span class="t-mono">od {c.since_year}</span>}
+                    </div>
+                    <h3 class="h-title" style="font-size:14.5px; margin:0; line-height:1.15;">{c.name}</h3>
+                    {locationStr && <div class="t-small" style="margin-top:2px;">{locationStr}</div>}
+                  </div>
+                </div>
+
+                <p class="t-small" style="margin:0; color:var(--ink-soft);">{c.description}</p>
+
+                {specs.length > 0 && (
+                  <div style="display:flex; flex-wrap:wrap; gap:4px;">
+                    {specs.map((s) => <span class="tag warm">{s}</span>)}
+                  </div>
+                )}
+
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-top:auto; padding-top:12px; border-top:1px solid var(--rule);">
+                  <div style="display:flex; align-items:center; gap:4px;">
+                    {c.rating != null ? (
+                      <>
+                        <span style="color:var(--warm); font-size:14px;">★</span>
+                        <span style="font-weight:500; font-size:14px;">{c.rating.toFixed(1)}</span>
+                        <span class="t-mono">({c.reviews_count} opinii)</span>
+                      </>
+                    ) : (
+                      <span class="t-mono">brak ocen</span>
+                    )}
+                  </div>
+                  <a href={`/kancelarie/${c.id}`} class="btn btn-sm">Profil →</a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </section>
+  </div>
+
+  <div class="card card-warm kancelarie-cta" style="margin-top:56px; padding:32px; display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center;">
+    <div>
+      <div class="h-eyebrow" style="color:var(--warm-deep);">Jesteś prawnikiem lub prowadzisz kancelarię?</div>
+      <h2 class="h-headline" style="font-size:20px; margin:6px 0 4px; color:var(--warm-deep);">Dołącz do katalogu</h2>
+      <p style="margin:0; color:var(--warm-deep);">4 pola, weryfikacja w 24h, listing za darmo. Dotrzyj do osób szukających prawnika.</p>
+    </div>
+    <a href="/kancelarie/dodaj" class="btn btn-warm btn-lg">Dodaj kancelarię →</a>
+  </div>
+
+</BaseLayout>
+
+<style>
+.sidebar-content { display: flex; }
+@media (max-width: 700px) {
+  #search-bar { display: none !important; }
+  .kancelarie-grid { grid-template-columns: 1fr !important; }
+  .companies-grid { grid-template-columns: 1fr !important; }
+  .kancelarie-cta { grid-template-columns: 1fr !important; text-align: center; }
+  .kancelarie-cta a { width: 100%; justify-content: center; }
+  .hero-cta { align-items: center !important; width: 100%; }
+  #sidebar-toggle { display: flex !important; }
+  .sidebar-content { display: none; }
+  .sidebar-content.open { display: flex; }
+}
+</style>
+
+<script>
+const sidebarToggle = document.getElementById('sidebar-toggle');
+const sidebarContent = document.getElementById('sidebar-content');
+const sidebarArrow = document.getElementById('sidebar-arrow');
+sidebarToggle?.addEventListener('click', () => {
+  const open = sidebarContent?.classList.toggle('open');
+  if (sidebarArrow) sidebarArrow.textContent = open ? '▲' : '▼';
+  if (sidebarContent) { sidebarContent.style.flexDirection = 'column'; sidebarContent.style.gap = '20px'; }
+});
+
+const cards = document.querySelectorAll<HTMLElement>('.company-card');
+const countEl = document.getElementById('results-count');
+function updateCount() {
+  const visible = Array.from(cards).filter(c => c.style.display !== 'none').length;
+  if (countEl) countEl.textContent = visible + ' z ' + cards.length + ' kancelarii';
+}
+
+document.getElementById('city-input')?.addEventListener('input', function(this: HTMLInputElement) {
+  const q = this.value.toLowerCase();
+  cards.forEach(c => { c.style.display = !q || (c.dataset.location || '').includes(q) ? '' : 'none'; });
+  updateCount();
+});
+
+document.querySelectorAll<HTMLElement>('.voiv-link').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const voiv = link.dataset.voiv || '';
+    cards.forEach(c => { c.style.display = (c.dataset.location || '').includes(voiv) ? '' : 'none'; });
+    updateCount();
+  });
+});
+
+document.querySelectorAll<HTMLInputElement>('.spec-check').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const checked = Array.from(document.querySelectorAll<HTMLInputElement>('.spec-check:checked')).map(c => c.value);
+    cards.forEach(c => {
+      c.style.display = checked.length === 0 || checked.some(s => (c.dataset.specs || '').includes(s)) ? '' : 'none';
+    });
+    updateCount();
+  });
+});
+
+updateCount();
+</script>
