@@ -25,18 +25,18 @@ const articleCategory = Object.entries(CATEGORIES).find(([, { tags: catTags }]) 
 );
 const [catSlug, catData] = articleCategory ?? [null, null];
 
-const authorName = article.data.author ?? 'Redakcja ogrzeje.pl';
+const authorName = article.data.author ?? 'Redakcja lexpraktyk.pl';
 const authorInitials = authorName.split(' ').slice(0,2).map((w: string) => w[0]).join('').toUpperCase();
 ---
 
 <BaseLayout
-  title={`${article.data.title} – ogrzeje.pl`}
+  title={`${article.data.title} – lexpraktyk.pl`}
   description={article.data.description}
   image={article.data.cover}
 >
   <!-- Breadcrumb -->
   <nav class="t-mono" style="margin-bottom:24px; color:var(--ink-faint);">
-    <a href="/" style="color:var(--ink-soft);">ogrzeje.pl</a>
+    <a href="/" style="color:var(--ink-soft);">lexpraktyk.pl</a>
     {catSlug && (
       <>
         <span style="margin:0 6px;">·</span>
@@ -137,7 +137,7 @@ const authorInitials = authorName.split(' ').slice(0,2).map((w: string) => w[0])
     <div>
       <div class="h-title" style="font-size:15px; margin-bottom:4px;">{authorName}</div>
       <p class="t-body" style="margin:0; color:var(--ink-soft); font-size:13px;">
-        Zespół redakcyjny ogrzeje.pl — specjaliści od ogrzewania, energii odnawialnej i efektywności energetycznej dla polskich domów.
+        Zespół redakcyjny lexpraktyk.pl — specjaliści od ogrzewania, energii odnawialnej i efektywności energetycznej dla polskich domów.
       </p>
     </div>
   </div>

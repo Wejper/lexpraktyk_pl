@@ -18,7 +18,7 @@ const articles = (await getCollection('articles', ({ data }) => data.published &
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 ---
 
-<BaseLayout title={`${label} – ogrzeje.pl`} description={description}>
+<BaseLayout title={`${label} – lexpraktyk.pl`} description={description}>
   <div class="section-head">
     <div>
       <div class="h-eyebrow">{category}</div>
