@@ -25,7 +25,7 @@ jobs:
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
-          printf '%s' "${{ secrets.SEOHOST_SSH_KEY }}" > ~/.ssh/deploy_key
+          printf '%s\n' "${{ secrets.SEOHOST_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           echo "StrictHostKeyChecking no" >> ~/.ssh/config
           echo "UserKnownHostsFile /dev/null" >> ~/.ssh/config
