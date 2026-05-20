@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCoverImage } from '../utils/cover';
+
+interface Props {
+  current: CollectionEntry<'articles'>;
+  all: CollectionEntry<'articles'>[];
+  count?: number;
+}
+
+const { current, all, count = 3 } = Astro.props;
+
+const others = all.filter((a) => a.id !== current.id);
+
+// Score each article by number of shared tags
+const scored = others.map((a) => {
+  const shared = a.data.tags?.filter((t) => current.data.tags?.includes(t)).length ?? 0;
+  return { article: a, score: shared };
+});
+
+// Sort by score desc, then by date desc as tiebreaker
+const related = scored
+  .sort((a, b) => b.score - a.score || b.article.data.publishDate.valueOf() - a.article.data.publishDate.valueOf())
+  .slice(0, count)
+  .map((s) => s.article);
+
+const covers = await Promise.all(
+  related.map((a) => getCoverImage(a.data.cover, a.data.tags, a.data.coverQuery, a.id))
+);
+---
+
+{related.length > 0 && (
+  <div class="related-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:32px;">
+    {related.map((article, i) => (
+      <div class="card" style="overflow:hidden; position:relative;">
+        <img
+          src={covers[i]}
+          alt={article.data.title}
+          style="width:100%; height:160px; object-fit:cover; display:block;"
+          loading="lazy"
+        />
+        <div style="padding:16px;">
+          <h3 class="h-title" style="font-size:14px; margin:0 0 6px;">
+            <a href={`/artykuly/${article.id}`} class="stretched-link">{article.data.title}</a>
+          </h3>
+          <p class="t-body" style="font-size:13px; color:var(--ink-soft); margin:0;">{article.data.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+)}

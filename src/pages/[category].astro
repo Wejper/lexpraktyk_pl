@@ -1,0 +1,31 @@
+---
+export const prerender = false;
+
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleList from '../components/ArticleList.astro';
+import { CATEGORIES, type CategorySlug } from '../utils/categories';
+
+const { category } = Astro.params as { category: CategorySlug };
+
+if (!category || !(category in CATEGORIES)) return Astro.redirect('/');
+
+const { label, description, tags: categoryTags } = CATEGORIES[category];
+
+const now = new Date();
+const articles = (await getCollection('articles', ({ data }) => data.published && new Date(data.publishDate) <= now))
+  .filter((a) => a.data.tags?.some((t) => (categoryTags as readonly string[]).includes(t)))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<BaseLayout title={`${label} – ogrzeje.pl`} description={description}>
+  <div class="section-head">
+    <div>
+      <div class="h-eyebrow">{category}</div>
+      <h1 class="h-headline" style="font-size:28px; margin:4px 0 0;">{label}</h1>
+    </div>
+    <span class="t-mono">{articles.length} artykułów</span>
+  </div>
+
+  <ArticleList articles={articles} />
+</BaseLayout>

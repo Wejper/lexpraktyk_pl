@@ -1,0 +1,30 @@
+---
+export const prerender = false;
+
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleList from '../../components/ArticleList.astro';
+
+const { tag } = Astro.params;
+
+if (!tag) return Astro.redirect('/');
+
+const now = new Date();
+const articles = (await getCollection('articles', ({ data }) => data.published && new Date(data.publishDate) <= now && data.tags?.includes(tag)))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<BaseLayout
+  title={`${tag} – ogrzeje.pl`}
+  description={`Artykuły oznaczone tagiem „${tag}" na ogrzeje.pl`}
+>
+  <div class="section-head">
+    <div>
+      <div class="h-eyebrow">tag</div>
+      <h1 class="h-headline" style="font-size:28px; margin:4px 0 0;">#{tag}</h1>
+    </div>
+    <span class="t-mono">{articles.length} artykułów</span>
+  </div>
+
+  <ArticleList articles={articles} />
+</BaseLayout>

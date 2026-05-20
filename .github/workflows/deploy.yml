@@ -1,0 +1,82 @@
+name: Build and deploy
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 5 * * *'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s' "${{ secrets.SEOHOST_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo "StrictHostKeyChecking no" >> ~/.ssh/config
+          echo "UserKnownHostsFile /dev/null" >> ~/.ssh/config
+
+      - name: Download covers from server
+        run: |
+          mkdir -p public/images/covers
+          rsync -az \
+            -e "ssh -i ~/.ssh/deploy_key -p 57185" \
+            ${{ secrets.SEOHOST_USER }}@${{ secrets.SEOHOST_HOST }}:/home/${{ secrets.SEOHOST_USER }}/domains/lexpraktyk.pl/public_html/images/covers/ \
+            public/images/covers/ || true
+
+      - name: Build
+        run: npm run build
+        env:
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+
+      - name: Deploy static files
+        run: |
+          rsync -az --delete --exclude=images/covers/ --exclude=.htaccess \
+            -e "ssh -i ~/.ssh/deploy_key -p 57185" \
+            dist/client/ \
+            ${{ secrets.SEOHOST_USER }}@${{ secrets.SEOHOST_HOST }}:/home/${{ secrets.SEOHOST_USER }}/domains/lexpraktyk.pl/public_html/
+
+      - name: Deploy server
+        run: |
+          cp server-start.mjs dist/server/start.mjs
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key -p 57185" \
+            dist/server/ \
+            ${{ secrets.SEOHOST_USER }}@${{ secrets.SEOHOST_HOST }}:/home/${{ secrets.SEOHOST_USER }}/domains/lexpraktyk.pl/server/
+          rsync -az \
+            -e "ssh -i ~/.ssh/deploy_key -p 57185" \
+            package.json package-lock.json \
+            ${{ secrets.SEOHOST_USER }}@${{ secrets.SEOHOST_HOST }}:/home/${{ secrets.SEOHOST_USER }}/domains/lexpraktyk.pl/
+
+      - name: Install server dependencies
+        run: |
+          ssh -i ~/.ssh/deploy_key -p 57185 \
+            ${{ secrets.SEOHOST_USER }}@${{ secrets.SEOHOST_HOST }} \
+            "source ~/nodevenv/domains/lexpraktyk.pl/22/bin/activate && cd ~/domains/lexpraktyk.pl && npm install --omit=dev"
+
+      - name: Restart Node.js
+        run: |
+          ssh -i ~/.ssh/deploy_key -p 57185 \
+            ${{ secrets.SEOHOST_USER }}@${{ secrets.SEOHOST_HOST }} \
+            "touch ~/domains/lexpraktyk.pl/tmp/restart.txt"
+
+      - name: Upload cover images
+        run: |
+          rsync -az --delete --checksum \
+            -e "ssh -i ~/.ssh/deploy_key -p 57185" \
+            public/images/covers/ \
+            ${{ secrets.SEOHOST_USER }}@${{ secrets.SEOHOST_HOST }}:/home/${{ secrets.SEOHOST_USER }}/domains/lexpraktyk.pl/public_html/images/covers/

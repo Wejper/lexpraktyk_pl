@@ -1,0 +1,21 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: articles
+    label: Artykuły
+    folder: src/content/articles
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Tytuł, name: title, widget: string }
+      - { label: Opis (SEO), name: description, widget: string }
+      - { label: Data publikacji, name: publishDate, widget: datetime }
+      - { label: Opublikowany, name: published, widget: boolean, default: false }
+      - { label: Obrazek główny, name: cover, widget: image, required: false }
+      - { label: Tagi, name: tags, widget: list, required: false }
+      - { label: Treść, name: body, widget: markdown }
