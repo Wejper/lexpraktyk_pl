@@ -1,28 +1,23 @@
 export const CATEGORIES = {
-  dziedziczenie: {
-    label: 'Dziedziczenie',
-    description: 'Spadki, zachowek, dział spadku, testament — praktyczny przewodnik krok po kroku.',
-    tags: ['dziedziczenie', 'spadek', 'zachowek', 'testament', 'dział spadku'],
-  },
   nieruchomosci: {
     label: 'Nieruchomości',
-    description: 'Kupno, sprzedaż i prawo nieruchomości — notariat, księgi wieczyste, koszty transakcji.',
-    tags: ['nieruchomości', 'notariusz', 'księga wieczysta', 'umowa', 'hipoteka'],
+    description: 'Zakup bez agenta, spory z deweloperem, dziedziczenie nieruchomości, księgi wieczyste — zanim podpiszesz, wiedz co podpisujesz.',
+    tags: ['nieruchomości', 'notariusz', 'księga wieczysta', 'hipoteka', 'deweloper', 'dziedziczenie', 'spadek', 'zachowek', 'testament', 'dział spadku', 'podatek'],
   },
-  dobre_imie: {
-    label: 'Dobre imię',
-    description: 'Ochrona reputacji, pomówienia w internecie, dobra osobiste — jak reagować i dochodzić praw.',
-    tags: ['dobre imię', 'pomówienie', 'dobra osobiste', 'reputacja', 'RODO'],
+  praca: {
+    label: 'Praca',
+    description: 'Wypowiedzenie, zakaz konkurencji, pułapki w umowach B2B — Twoje prawa jako pracownik i zleceniobiorca.',
+    tags: ['praca', 'wypowiedzenie', 'zakaz konkurencji', 'umowa o pracę', 'B2B', 'nadgodziny', 'zwolnienie'],
   },
-  prawo_rodzinne: {
-    label: 'Prawo rodzinne',
-    description: 'Rozwód, podział majątku, alimenty, intercyza — prawa i procedury.',
-    tags: ['rozwód', 'alimenty', 'podział majątku', 'intercyza', 'prawo rodzinne'],
+  biznes: {
+    label: 'Biznes',
+    description: 'Abuzywne klauzule, windykacja B2B, spory ze wspólnikiem, due diligence — ochrona prawna małej firmy.',
+    tags: ['biznes', 'windykacja', 'umowa', 'klauzule abuzywne', 'spółka', 'due diligence', 'franczyza', 'leasing'],
   },
-  poradniki: {
-    label: 'Poradniki',
-    description: 'Praktyczne przewodniki prawne dla zwykłych ludzi — bez żargonu, krok po kroku.',
-    tags: ['poradnik', 'procedura', 'kalkulator', 'wzór pisma', 'sąd'],
+  reputacja: {
+    label: 'Reputacja',
+    description: 'Fałszywe opinie, pomówienie w internecie, RODO, ochrona marki — usuwamy szkodliwe treści i bronimy Twojego dobrego imienia.',
+    tags: ['reputacja', 'pomówienie', 'dobra osobiste', 'RODO', 'opinie', 'ochrona marki', 'dobre imię'],
   },
 } as const;
 

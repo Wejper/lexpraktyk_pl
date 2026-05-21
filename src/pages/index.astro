@@ -23,7 +23,7 @@ for (const [slug, { tags: catTags }] of Object.entries(CATEGORIES)) {
 }
 
 // "Co czytają" trio — one unique article per first 3 categories
-const trioCats = ['dziedziczenie', 'nieruchomosci', 'prawo_rodzinne'] as const;
+const trioCats = ['nieruchomosci', 'praca', 'reputacja'] as const;
 const usedIds = new Set<string>();
 const trioArticles = await Promise.all(
   trioCats.map(async (cat) => {
@@ -35,7 +35,7 @@ const trioArticles = await Promise.all(
   })
 );
 
-const popularTags = ['zachowek','spadek','testament','notariusz','księga wieczysta','pomówienie','rozwód','alimenty','podział majątku','umowa przedwstępna'];
+const popularTags = ['zachowek','testament','notariusz','księga wieczysta','wypowiedzenie','zakaz konkurencji','windykacja','pomówienie','RODO','deweloper'];
 ---
 
 <BaseLayout
