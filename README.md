@@ -154,6 +154,7 @@ Przy 0,5% konwersji odwiedzin na płatną sprawę × 650 PLN marży + retainery 
 - **Słowa kluczowe od intencji szukającego** — tytułuj i pisz pod frazy które ktoś wpisuje w chwili problemu: "jak usunąć fałszywą opinię z Google", "klient grozi jedną gwiazdką", "opinia od osoby która nie była pacjentem." Nie pod frazy akademickie.
 - **Konkretne kroki, nie teoria** — czytelnik ma problem teraz. Daj mu listę działań, nie wykład z prawa.
 - **Długość**: 600–1000 słów na artykuł. Żadnego lania wody żeby było dłużej.
+- **Podstawy prawne — obowiązkowo, ale niewidocznie:** każde twierdzenie prawne musi mieć oparcie w realnej polskiej ustawie z Dziennika Ustaw RP. Cytuj przepis naturalnie w tekście ("art. 17 RODO daje Ci 30 dni na odpowiedź platformy") lub zbierz wszystkie podstawy w sekcji na końcu artykułu. Nie pisz o prawie bez przepisu — nie piszemy poezji, piszemy praktyczny poradnik prawny. Przykłady: Kodeks cywilny (Dz.U. 1964 nr 16 poz. 93), Kodeks karny (Dz.U. 1997 nr 88 poz. 553), RODO (Rozporządzenie UE 2016/679), ustawa o ochronie danych osobowych (Dz.U. 2018 poz. 1000).
 
 ---
 
