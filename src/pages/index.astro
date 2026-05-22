@@ -23,7 +23,7 @@ for (const [slug, { tags: catTags }] of Object.entries(CATEGORIES)) {
 }
 
 // "Co czytają" trio — one unique article per first 3 categories
-const trioCats = ['nieruchomosci', 'praca', 'reputacja'] as const;
+const trioCats = ['nieruchomosci', 'biznes', 'reputacja'] as const;
 const usedIds = new Set<string>();
 const trioArticles = await Promise.all(
   trioCats.map(async (cat) => {
