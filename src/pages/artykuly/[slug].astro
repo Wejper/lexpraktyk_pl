@@ -129,6 +129,15 @@ const authorInitials = authorName.split(' ').slice(0,2).map((w: string) => w[0])
     )}
   </div>
 
+  <!-- Disclaimer -->
+  <div style="border-left: 3px solid var(--warm); padding: 14px 18px; margin-bottom: 32px; background: var(--paper-2); border-radius: 0 var(--r-sm) var(--r-sm) 0;">
+    <p class="t-body" style="margin:0; font-size:13px; color:var(--ink-soft); line-height:1.6;">
+      <strong style="color:var(--ink);">Uwaga:</strong> Artykuły na lexpraktyk.pl mają charakter wyłącznie informacyjny i nie stanowią porady prawnej w rozumieniu
+      ustawy z dnia 6 lipca 1982 r. o radcach prawnych ani ustawy z dnia 26 maja 1982 r. — Prawo o adwokaturze.
+      W przypadku konkretnej sprawy prawnej skonsultuj się z radcą prawnym lub adwokatem.
+    </p>
+  </div>
+
   <!-- Author bio card -->
   <div class="card" style="padding:24px; display:flex; gap:16px; align-items:flex-start; margin-bottom:48px;">
     <div style="width:48px; height:48px; border-radius:50%; background:var(--paper-3); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:14px; font-weight:500; color:var(--ink-soft); flex-shrink:0;">
@@ -137,7 +146,7 @@ const authorInitials = authorName.split(' ').slice(0,2).map((w: string) => w[0])
     <div>
       <div class="h-title" style="font-size:15px; margin-bottom:4px;">{authorName}</div>
       <p class="t-body" style="margin:0; color:var(--ink-soft); font-size:13px;">
-        Zespół redakcyjny lexpraktyk.pl — specjaliści od ogrzewania, energii odnawialnej i efektywności energetycznej dla polskich domów.
+        Zespół redakcyjny lexpraktyk.pl — praktyczne informacje prawne dla osób i firm z realnym problemem. Artykuły weryfikowane pod kątem aktualnych przepisów prawa polskiego.
       </p>
     </div>
   </div>
