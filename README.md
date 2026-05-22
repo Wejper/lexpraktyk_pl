@@ -147,6 +147,16 @@ Przy 0,5% konwersji odwiedzin na płatną sprawę × 650 PLN marży + retainery 
 
 ---
 
+## Styl artykułów
+
+- **Naturalny język** — pisz jak człowiek do człowieka, nie jak ustawa do czytelnika. Żadnych "niniejszym", "w związku z powyższym", "należy wskazać iż."
+- **Blockquote (`>`) dla kluczowych myśli** — każdy artykuł powinien mieć 2–4 cytaty wyróżniające najważniejszy wniosek lub praktyczną radę.
+- **Słowa kluczowe od intencji szukającego** — tytułuj i pisz pod frazy które ktoś wpisuje w chwili problemu: "jak usunąć fałszywą opinię z Google", "klient grozi jedną gwiazdką", "opinia od osoby która nie była pacjentem." Nie pod frazy akademickie.
+- **Konkretne kroki, nie teoria** — czytelnik ma problem teraz. Daj mu listę działań, nie wykład z prawa.
+- **Długość**: 600–1000 słów na artykuł. Żadnego lania wody żeby było dłużej.
+
+---
+
 ## Autorzy (persony)
 
 - **Katarzyna Wiśniewska** — prawo cywilne, nieruchomości, ochrona dóbr osobistych
