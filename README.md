@@ -81,33 +81,32 @@ Działa dla: usunięcia opinii, wezwania do zapłaty, weryfikacji umowy, zakwest
 ## Plan treści
 
 ### Nieruchomości (priorytet: wysoki)
-- Czy agent nieruchomości jest potrzebny — co naprawdę robi i ile bierze *(napisany)*
 - Zakup mieszkania bez agenta krok po kroku *(napisany)*
 - Spór z deweloperem: jak dochodzić praw za wady mieszkania *(napisany)*
-- Umowa przedwstępna — 7 pułapek których nie zauważysz bez prawnika
-- Odbiór mieszkania od dewelopera — checklista krok po kroku
-- Księga wieczysta — jak czytać i co Cię powinno niepokoić
-- Zakup na rynku wtórnym — co sprawdzić zanim zapłacisz zadatek
-- Deweloper opóźnia oddanie mieszkania — Twoje prawa i odszkodowanie
 - Zachowek *(napisany)*, testament *(napisany)*, dział spadku *(napisany)*, odrzucenie spadku *(napisany)*, podatek od spadku *(napisany)*, stwierdzenie nabycia *(napisany)*
+- Umowa przedwstępna — 7 pułapek których nie zauważysz bez prawnika *(do napisania)*
+- Odbiór mieszkania od dewelopera — checklista krok po kroku *(do napisania)*
+- Księga wieczysta — jak czytać i co Cię powinno niepokoić *(do napisania)*
+- Zakup na rynku wtórnym — co sprawdzić zanim zapłacisz zadatek *(do napisania)*
+- Deweloper opóźnia oddanie mieszkania — Twoje prawa i odszkodowanie *(do napisania)*
 
 ### Biznes (priorytet: wysoki)
 - Abuzywne klauzule w umowach B2B *(napisany)*
 - Zakaz konkurencji — kiedy jest ważny *(napisany)*
 - Wypowiedzenie umowy o pracę *(napisany)*
-- Jak zabezpieczyć się przed nieuczciwym kontrahentem B2B
-- Umowa z wykonawcą — co wpisać żeby nie zostać z problemem
+- Jak zabezpieczyć się przed nieuczciwym kontrahentem B2B *(do napisania)*
+- Umowa z wykonawcą — co wpisać żeby nie zostać z problemem *(do napisania)*
 
 ### Reputacja (priorytet: najwyższy)
 - Jak usunąć fałszywą opinię z Google *(napisany)*
 - Pomówienie w internecie: co zrobić *(napisany)*
-- Szantaż reputacyjny: "dam 1★ jeśli nie zwrócisz pieniędzy" — jak reagować
-- Opinia od pacjenta którego nigdy nie leczyłeś — co możesz zrobić
-- Ochrona wizerunku lekarza w internecie — przewodnik prawny
-- Fałszywe opinie na Facebooku i forach — ścieżka prawna
-- Polityka firmy wobec negatywnych opinii — jak zbudować odporność prawną
-- RODO a opinie w internecie — kiedy możesz żądać usunięcia danych autora
-- Anonimowe pomówienie — czy można ustalić tożsamość i pozwać
+- Szantaż reputacyjny: "dam 1★ jeśli nie zwrócisz pieniędzy" — jak reagować *(napisany)*
+- Opinia od pacjenta którego nigdy nie leczyłeś — co możesz zrobić *(napisany)*
+- Ochrona wizerunku firmy w internecie — polityka i procedury *(napisany)*
+- Fałszywe opinie na Facebooku i forach — ścieżka prawna *(napisany)*
+- RODO a opinie w internecie — kiedy możesz żądać usunięcia danych autora *(napisany)*
+- Anonimowe pomówienie — czy można ustalić tożsamość i pozwać *(napisany)*
+- Ochrona wizerunku lekarza w internecie — przewodnik prawny *(do napisania)*
 
 ---
 
@@ -168,12 +167,13 @@ Przy 0,5% konwersji odwiedzin na płatną sprawę × 650 PLN marży + retainery 
 
 ## Milestones
 
-| # | Cel | Kiedy |
-|---|-----|-------|
-| 1 | 30 artykułów — pełne pokrycie trzech kategorii | Miesiąc 1–2 |
-| 2 | Strona usługi Reputacja z formularzem zgłoszenia | Miesiąc 2 |
-| 3 | Pierwszy partner prawnik potwierdzony | Miesiąc 2–3 |
-| 4 | Pierwsze 5 płatnych spraw | Miesiąc 3–4 |
-| 5 | 10 firm na miesięcznym retainerze | Miesiąc 6 |
-| 6 | 30 000 odwiedzin/miesiąc organic | Miesiąc 12 |
-| 7 | 50 000 PLN/miesiąc przychód | Miesiąc 18–24 |
+| # | Cel | Status |
+|---|-----|--------|
+| 1 | 30 artykułów — pełne pokrycie trzech kategorii | 🟡 19/30 — 8 Nieruchomości, 3 Biznes, 8 Reputacja |
+| 2 | Disclaimer "To jest poradnik, nie porada prawna" na górze każdego artykułu | 🟡 Jest na dole — przenieść na górę |
+| 3 | Strona usługi Reputacja z formularzem zgłoszenia | ⬜ do zrobienia |
+| 4 | Pierwszy partner prawnik potwierdzony | ⬜ do zrobienia |
+| 5 | Pierwsze 5 płatnych spraw | ⬜ do zrobienia |
+| 6 | 10 firm na miesięcznym retainerze | ⬜ do zrobienia |
+| 7 | 30 000 odwiedzin/miesiąc organic | ⬜ do zrobienia |
+| 8 | 50 000 PLN/miesiąc przychód | ⬜ do zrobienia |
