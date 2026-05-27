@@ -7,7 +7,7 @@ import node from '@astrojs/node';
 
 export default defineConfig({
   site: 'https://lexpraktyk.pl',
-  integrations: [mdx(), sitemap()],
+  integrations: [mdx()],
   vite: {
     plugins: [tailwindcss()]
   },
