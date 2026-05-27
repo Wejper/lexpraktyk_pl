@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CATEGORIES } from '../utils/categories';
+---
+
+<BaseLayout title="Strona nie istnieje – lexpraktyk.pl" description="Nie znaleziono strony." noindex={true}>
+  <div style="padding: 64px 0; text-align: center;">
+    <div class="t-mono" style="font-size: 13px; color: var(--ink-soft); margin-bottom: 12px;">404</div>
+    <h1 class="h-headline" style="font-size: 32px; margin: 0 0 12px;">Nie ma takiej strony</h1>
+    <p class="t-body" style="color: var(--ink-soft); margin: 0 0 32px;">Adres nie istnieje lub treść została przeniesiona.</p>
+    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+      <a href="/" class="btn btn-primary">Strona główna</a>
+      {Object.entries(CATEGORIES).map(([slug, { label }]) => (
+        <a href={`/${slug}`} class="btn btn-outline">{label}</a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

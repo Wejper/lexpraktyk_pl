@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ogrzeje.pl/sitemap-index.xml
+Sitemap: https://lexpraktyk.pl/sitemap-index.xml

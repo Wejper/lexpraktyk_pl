@@ -7,7 +7,7 @@ import ArticleList from '../../components/ArticleList.astro';
 
 const { tag } = Astro.params;
 
-if (!tag) return Astro.redirect('/');
+if (!tag) Astro.response.status = 404;
 
 const now = new Date();
 const articles = (await getCollection('articles', ({ data }) => data.published && new Date(data.publishDate) <= now && data.tags?.includes(tag)))
@@ -17,6 +17,7 @@ const articles = (await getCollection('articles', ({ data }) => data.published &
 <BaseLayout
   title={`${tag} – lexpraktyk.pl`}
   description={`Artykuły oznaczone tagiem „${tag}" na lexpraktyk.pl`}
+  noindex={true}
 >
   <div class="section-head">
     <div>

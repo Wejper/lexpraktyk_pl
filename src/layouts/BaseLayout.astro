@@ -7,9 +7,10 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  noindex?: boolean;
 }
 
-const { title, description, image } = Astro.props;
+const { title, description, image, noindex } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const year = new Date().getFullYear();
 ---
@@ -27,6 +28,7 @@ const year = new Date().getFullYear();
       title={title}
       description={description}
       canonical={canonicalURL.toString()}
+      noindex={noindex}
       openGraph={{
         basic: {
           title,
@@ -113,6 +115,9 @@ const year = new Date().getFullYear();
             </div>
           </div>
         </div>
+        <p style="font-size: 12px; color: var(--ink-soft); margin: 24px 0 0; line-height: 1.6;">
+          Artykuły na lexpraktyk.pl mają charakter informacyjny i nie stanowią porady prawnej. W konkretnych sprawach warto skonsultować się z radcą prawnym lub adwokatem.
+        </p>
         <div class="bottom">
           <span>© {year} lexpraktyk.pl · wszystkie prawa zastrzeżone</span>
           <span>polityka prywatności · regulamin · RSS</span>
