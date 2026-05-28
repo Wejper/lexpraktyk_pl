@@ -1,11 +1,14 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
+import { CATEGORIES } from '../utils/categories';
 
 const SITE = 'https://lexpraktyk.pl';
 
 const staticPages = [
   { url: '/' },
+  { url: '/wzory/' },
   { url: '/kancelarie/' },
+  ...Object.keys(CATEGORIES).map(slug => ({ url: `/${slug}/` })),
 ];
 
 export const GET: APIRoute = async () => {
@@ -15,7 +18,7 @@ export const GET: APIRoute = async () => {
     ...staticPages.map(({ url }) => `<url><loc>${SITE}${url}</loc></url>`),
     ...articles.map(a => {
       const lastmod = a.data.publishDate.toISOString().slice(0, 10);
-      return `<url><loc>${SITE}/artykuly/${a.slug}/</loc><lastmod>${lastmod}</lastmod></url>`;
+      return `<url><loc>${SITE}/artykuly/${a.id}/</loc><lastmod>${lastmod}</lastmod></url>`;
     }),
   ];
 
