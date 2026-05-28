@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="10" fill="#f8f5ee"/>
-  <text x="8" y="54" font-family="'Instrument Serif', 'Source Serif Pro', Georgia, serif" font-size="52" font-weight="400" font-style="italic" fill="#0d1b2a">l</text>
-  <rect x="38" y="12" width="4" height="40" fill="#7a1c2c"/>
-  <rect x="48" y="12" width="4" height="40" fill="#7a1c2c"/>
+  <rect width="64" height="64" rx="10" fill="#f8f5ee"></rect>
+  <text x="20" y="50" font-family="&#39;Instrument Serif&#39;, &#39;Source Serif Pro&#39;, Georgia, serif" font-size="52" font-weight="400" font-style="italic" fill="#0d1b2a">l</text>
+  <rect x="38" y="14" width="3" height="36" fill="#7a1c2c"></rect>
+  <rect x="46" y="14" width="3" height="36" fill="#7a1c2c"></rect>
 </svg>
