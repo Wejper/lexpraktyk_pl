@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const WZORY = [
+  { code: 'W1', name: 'Wezwanie do usunięcia opinii', desc: 'Gotowe pismo do platformy z podstawą prawną RODO + k.c.', cat: 'Reputacja' },
+  { code: 'W2', name: 'Wezwanie do zapłaty B2B', desc: 'Z odsetkami ustawowymi za opóźnienie i rekompensatą 40 EUR.', cat: 'Biznes' },
+  { code: 'W3', name: 'Zakwestionowanie kary umownej', desc: 'Wniosek o miarkowanie + analiza ważności klauzuli.', cat: 'Biznes' },
+  { code: 'W4', name: 'Wniosek RODO o dane', desc: 'Żądanie informacji o danych autora opinii lub komentarza.', cat: 'Reputacja' },
+  { code: 'W5', name: 'Odwołanie od mandatu', desc: 'Wzór z najczęstszymi podstawami uchylenia.', cat: 'Codzienne' },
+  { code: 'W6', name: 'Oświadczenie o odstąpieniu', desc: 'Wzór konsumencki w terminie 14 dni.', cat: 'Codzienne' },
+  { code: 'W7', name: 'Reklamacja towaru lub usługi', desc: 'Z powołaniem na rękojmię i terminem 14-dniowym.', cat: 'Codzienne' },
+  { code: 'W8', name: 'Zawiadomienie o wadach lokalu', desc: 'Wzór do dewelopera z protokołem i terminem.', cat: 'Nieruchomości' },
+  { code: 'W9', name: 'Wypowiedzenie umowy najmu', desc: 'Najem mieszkaniowy i okazjonalny — dwa warianty w jednym pliku.', cat: 'Nieruchomości' },
+];
+---
+
+<BaseLayout
+  title="Wzory pism — lexpraktyk.pl"
+  description="Gotowe pisma prawne do pobrania za darmo — wezwania, reklamacje, wnioski RODO, wypowiedzenia. Z podstawą prawną i miejscem na dane."
+>
+  <div style="padding: 10px 0 32px; border-bottom: 1px solid var(--ink);">
+    <div class="t-mono">
+      <a href="/" style="color: var(--ink-soft);">lexpraktyk.pl</a>
+      <span style="margin: 0 6px; color: var(--ink-faint);">·</span>
+      <span>wzory pism</span>
+    </div>
+    <div style="display: flex; align-items: baseline; gap: 14px; margin-top: 18px;">
+      <span style="font-family: var(--serif); font-style: italic; font-size: 72px; color: var(--accent); line-height: 0.9;">§</span>
+      <h1 class="h-display" style="font-size: 64px; margin: 0;">Wzory pism</h1>
+    </div>
+    <p class="t-script" style="font-size: 22px; margin-top: 14px; margin-bottom: 0; max-width: 760px;">
+      Gotowe pisma, które działają — z podstawą prawną, miejscem na dane i listą załączników. Bezpłatnie.
+    </p>
+  </div>
+
+  <section style="margin-top: 32px;">
+    <div class="wzory-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px;">
+      {WZORY.map((w) => (
+        <div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 8px; min-height: 180px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <span style="font-family: var(--serif); font-style: italic; font-size: 28px; color: var(--accent);">§ {w.code}</span>
+            <span class="tag accent">{w.cat}</span>
+          </div>
+          <h3 class="h-headline" style="font-size: 19px; margin: 4px 0;">{w.name}</h3>
+          <p class="t-small" style="margin: 0; flex: 1;">{w.desc}</p>
+          <div style="padding-top: 12px; border-top: 1px solid var(--rule);">
+            <a href={`/wzory/${w.code.toLowerCase()}`} class="btn btn-accent btn-sm" style="width: 100%; justify-content: center;">
+              Pobierz wzór →
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div style="margin-top: 40px; padding: 28px 32px; background: var(--paper-2); border: 1px solid var(--rule); display: flex; gap: 28px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+    <div style="max-width: 520px;">
+      <h3 class="h-headline" style="font-size: 22px; margin: 0 0 6px;">Potrzebujesz wzoru, którego tu nie ma?</h3>
+      <p class="t-small" style="margin: 0;">Napisz krótko, czego sprawa dotyczy. Jeśli pasuje do naszej praktyki — przygotujemy pismo skrojone pod twój przypadek.</p>
+    </div>
+    <a href="/reputacja" class="btn btn-accent">Zamów pismo →</a>
+  </div>
+</BaseLayout>
