@@ -12,9 +12,9 @@ const isValid = category && category in CATEGORIES;
 
 if (!isValid) Astro.response.status = 404;
 
-const { label, description, tags: categoryTags } = isValid
+const { label, description, num, tagline, tags: categoryTags } = isValid
   ? CATEGORIES[category]
-  : { label: '', description: '', tags: [] };
+  : { label: '', description: '', num: '', tagline: '', tags: [] };
 
 const now = new Date();
 const articles = isValid
@@ -26,14 +26,21 @@ const articles = isValid
 
 {isValid ? (
   <BaseLayout title={`${label} – lexpraktyk.pl`} description={description}>
-    <div class="section-head">
-      <div>
-        <div class="h-eyebrow">{category}</div>
-        <h1 class="h-headline" style="font-size:28px; margin:4px 0 0;">{label}</h1>
+    <div style="padding: 10px 0 32px; border-bottom: 1px solid var(--ink);">
+      <div class="t-mono">
+        <a href="/" style="color: var(--ink-soft);">lexpraktyk.pl</a>
+        <span style="margin: 0 6px; color: var(--ink-faint);">·</span>
+        <span>{category}</span>
       </div>
-      <span class="t-mono">{articles.length} artykułów</span>
+      <div style="display: flex; align-items: baseline; gap: 14px; margin-top: 18px;">
+        {num && <span style="font-family: var(--serif); font-style: italic; font-size: 72px; color: var(--accent); line-height: 0.9;">{num}</span>}
+        <h1 class="h-display" style="font-size: 64px; margin: 0;">{label}</h1>
+      </div>
+      <p class="t-script" style="font-size: 22px; margin-top: 14px; margin-bottom: 0; max-width: 760px;">{tagline}</p>
     </div>
-    <ArticleList articles={articles} />
+    <div style="margin-top: 32px;">
+      <ArticleList articles={articles} />
+    </div>
   </BaseLayout>
 ) : (
   <NotFound />
