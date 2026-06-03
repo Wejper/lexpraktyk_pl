@@ -1,0 +1,194 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCoverImage } from '../../utils/cover';
+import RelatedArticles from '../../components/RelatedArticles.astro';
+import { CATEGORIES } from '../../utils/categories';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles', ({ data }) => data.published);
+  return articles.map((article) => ({
+    params: { slug: article.id },
+    props: { article, allArticles: articles },
+  }));
+}
+
+const { article, allArticles } = Astro.props;
+const { Content, headings } = await render(article);
+const sections = headings.filter(h => h.depth === 2);
+const coverImage = await getCoverImage(article.data.cover, article.data.tags, article.data.coverQuery, article.id);
+
+const articleCategory = Object.entries(CATEGORIES).find(([, { tags: catTags }]) =>
+  article.data.tags?.some(t => (catTags as readonly string[]).includes(t))
+);
+const [catSlug, catData] = articleCategory ?? [null, null];
+
+const authorName = article.data.author ?? 'Redakcja lexpraktyk.pl';
+const authorInitials = authorName.split(' ').slice(0,2).map((w: string) => w[0]).join('').toUpperCase();
+
+const isScheduled = new Date(article.data.publishDate) > new Date();
+---
+
+<BaseLayout
+  title={`[PODGLĄD] ${article.data.title} – lexpraktyk.pl`}
+  description={article.data.description}
+  image={article.data.cover}
+  noindex={true}
+>
+  <!-- Preview banner -->
+  <div style="background:#b45309; color:#fff; padding:10px 16px; border-radius:var(--r-sm); margin-bottom:24px; font-family:var(--mono); font-size:13px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+    <span>
+      {isScheduled
+        ? `⚠ PODGLĄD · publikacja zaplanowana na ${article.data.publishDate.toLocaleDateString('pl-PL')}`
+        : `⚠ PODGLĄD · artykuł opublikowany ${article.data.publishDate.toLocaleDateString('pl-PL')}`
+      }
+    </span>
+    <a href={`/artykuly/${article.id}/`} style="color:#fff; text-decoration:underline;">→ link docelowy</a>
+  </div>
+
+  <!-- Breadcrumb -->
+  <nav class="t-mono" style="margin-bottom:24px; color:var(--ink-faint);">
+    <a href="/" style="color:var(--ink-soft);">lexpraktyk.pl</a>
+    {catSlug && (
+      <>
+        <span style="margin:0 6px;">·</span>
+        <a href={`/${catSlug}`} style="color:var(--ink-soft);">{catData?.label}</a>
+      </>
+    )}
+    <span style="margin:0 6px;">·</span>
+    <span>{article.data.title}</span>
+  </nav>
+
+  <!-- Article header -->
+  <header style="margin-bottom:28px;">
+    {article.data.tags && (
+      <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px;">
+        {article.data.tags.map(tag => (
+          <a href={`/tag/${encodeURIComponent(tag)}`} class="tag warm">#{tag}</a>
+        ))}
+      </div>
+    )}
+    <h1 class="h-display" style="font-size:36px; margin:0 0 12px;">{article.data.title}</h1>
+    <p class="t-body" style="color:var(--ink-soft); margin:0 0 16px; font-size:16px;">{article.data.description}</p>
+    <div style="display:flex; align-items:center; gap:14px; margin-top:24px; padding-top:16px; border-top:1px solid var(--rule);">
+      <div style="width:40px; height:40px; border-radius:50%; background:var(--paper-3); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink); flex-shrink:0;">
+        {authorInitials}
+      </div>
+      <div>
+        <div style="font-weight:500; font-size:14px;">{authorName}</div>
+        <time class="t-mono">{article.data.publishDate.toLocaleDateString('pl-PL')}</time>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cover image -->
+  <figure style="margin:0 0 32px;">
+    <img
+      src={coverImage}
+      alt={article.data.title}
+      style="width:100%; height:420px; object-fit:cover; border-radius:var(--r-md); display:block;"
+    />
+    <figcaption class="t-mono" style="margin-top:6px; color:var(--ink-faint);">fot. ilustracyjna · {article.data.tags?.[0] ?? 'prawo'}</figcaption>
+  </figure>
+
+  <!-- TOC mobile -->
+  {sections.length > 0 && (
+    <div class="card toc-mobile" style="padding:20px; margin-bottom:32px;">
+      <h3 class="h-eyebrow" style="margin:0 0 14px;">W skrócie</h3>
+      <ol style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:2px;">
+        {sections.map((h, idx) => (
+          <li>
+            <a href={`#${h.slug}`} class="toc-link" data-slug={h.slug}
+              style="display:flex; gap:10px; align-items:baseline; padding:6px 8px; border-radius:var(--r-sm); text-decoration:none; transition:background .12s ease, color .12s ease;">
+              <span class="t-mono" style="color:var(--warm); min-width:22px; font-weight:500; flex-shrink:0;">{String(idx + 1).padStart(2, '0')}</span>
+              <span style="font-size:13px; line-height:1.35; color:var(--ink-soft);">{h.text}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  )}
+
+  <!-- Body + Sidebar grid -->
+  <div class="article-grid" style="margin-bottom:64px;">
+    <article class="article-body">
+      <Content />
+    </article>
+    {sections.length > 0 && (
+      <aside class="article-sidebar">
+        <div class="card" style="padding:20px; position:sticky; top:80px;" id="toc">
+          <h3 class="h-eyebrow" style="margin:0 0 14px;">W skrócie</h3>
+          <ol style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:2px;">
+            {sections.map((h, idx) => (
+              <li>
+                <a href={`#${h.slug}`} class="toc-link" data-slug={h.slug}
+                  style="display:flex; gap:10px; align-items:baseline; padding:6px 8px; border-radius:var(--r-sm); text-decoration:none; transition:background .12s ease, color .12s ease;">
+                  <span class="t-mono" style="color:var(--warm); min-width:22px; font-weight:500; flex-shrink:0;">{String(idx + 1).padStart(2, '0')}</span>
+                  <span style="font-size:13px; line-height:1.35; color:var(--ink-soft);">{h.text}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </aside>
+    )}
+  </div>
+
+  <!-- Disclaimer -->
+  <div style="border-left: 3px solid var(--warm); padding: 14px 18px; margin-bottom: 32px; background: var(--paper-2); border-radius: 0 var(--r-sm) var(--r-sm) 0;">
+    <p class="t-body" style="margin:0; font-size:13px; color:var(--ink-soft); line-height:1.6;">
+      <strong style="color:var(--ink);">Uwaga:</strong> Artykuły na lexpraktyk.pl mają charakter wyłącznie informacyjny i nie stanowią porady prawnej w rozumieniu
+      ustawy z dnia 6 lipca 1982 r. o radcach prawnych ani ustawy z dnia 26 maja 1982 r. — Prawo o adwokaturze.
+      W przypadku konkretnej sprawy prawnej skonsultuj się z radcą prawnym lub adwokatem.
+    </p>
+  </div>
+
+  <!-- Author bio -->
+  <div class="card" style="padding:24px; display:flex; gap:16px; align-items:flex-start; margin-bottom:48px;">
+    <div style="width:48px; height:48px; border-radius:50%; background:var(--paper-3); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:14px; font-weight:500; color:var(--ink-soft); flex-shrink:0;">
+      {authorInitials}
+    </div>
+    <div>
+      <div class="h-title" style="font-size:15px; margin-bottom:4px;">{authorName}</div>
+      <p class="t-body" style="margin:0; color:var(--ink-soft); font-size:13px;">
+        Zespół redakcyjny lexpraktyk.pl — praktyczne informacje prawne dla osób i firm z realnym problemem. Artykuły weryfikowane pod kątem aktualnych przepisów prawa polskiego.
+      </p>
+    </div>
+  </div>
+
+  <RelatedArticles current={article} all={allArticles} />
+  <div style="margin-top:32px;">
+    <a href="/" class="btn">← Wszystkie artykuły</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .toc-link:hover { background: var(--paper-2); }
+  .toc-link:hover span:last-child { color: var(--ink); }
+  .toc-link.active { background: var(--warm-bg); }
+  .toc-link.active span:first-child { color: var(--warm-deep); }
+  .toc-link.active span:last-child { color: var(--ink); font-weight: 500; }
+</style>
+
+<script>
+  const links = document.querySelectorAll('.toc-link');
+  if (links.length > 0) {
+    const headingEls = Array.from(links).map(l =>
+      document.getElementById(l.dataset.slug || '')
+    ).filter(Boolean) as HTMLElement[];
+
+    function setActive() {
+      const scrollY = window.scrollY + 120;
+      let active = headingEls[0];
+      for (const el of headingEls) {
+        if (el.offsetTop <= scrollY) active = el;
+      }
+      links.forEach(l => {
+        l.classList.toggle('active', l.dataset.slug === active?.id);
+      });
+    }
+
+    window.addEventListener('scroll', setActive, { passive: true });
+    setActive();
+  }
+</script>
