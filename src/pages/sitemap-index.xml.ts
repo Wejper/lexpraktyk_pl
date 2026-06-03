@@ -12,7 +12,8 @@ const staticPages = [
 ];
 
 export const GET: APIRoute = async () => {
-  const articles = await getCollection('articles', a => a.data.published);
+  const now = new Date();
+  const articles = await getCollection('articles', a => a.data.published && new Date(a.data.publishDate) <= now);
 
   const urls = [
     ...staticPages.map(({ url }) => `<url><loc>${SITE}${url}</loc></url>`),
