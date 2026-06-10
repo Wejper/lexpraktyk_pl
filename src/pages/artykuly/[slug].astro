@@ -56,8 +56,8 @@ const authorInitials = authorName.split(' ').slice(0,2).map((w: string) => w[0])
         ))}
       </div>
     )}
-    <h1 class="h-display" style="font-size:36px; margin:0 0 12px;">{article.data.title}</h1>
-    <p class="t-body" style="color:var(--ink-soft); margin:0 0 16px; font-size:16px;">{article.data.description}</p>
+    <h1 class="h-display" style="font-size:48px; margin:0 0 18px;">{article.data.title}</h1>
+    <p class="t-script" style="font-size:22px; color:var(--ink-soft); margin:0 0 16px; font-weight:400; max-width:760px; line-height:1.35;">{article.data.description}</p>
     <!-- Author + date bar -->
     <div style="display:flex; align-items:center; gap:14px; margin-top:24px; padding-top:16px; border-top:1px solid var(--rule);">
       <div style="width:40px; height:40px; border-radius:50%; background:var(--paper-3); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink); flex-shrink:0;">
