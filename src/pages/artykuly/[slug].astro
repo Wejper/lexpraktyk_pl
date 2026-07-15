@@ -92,10 +92,9 @@ const authorInitials = authorName.split(' ').slice(0,2).map((w: string) => w[0])
       <ol style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:2px;">
         {sections.map((h, idx) => (
           <li>
-            <a href={`#${h.slug}`} class="toc-link" data-slug={h.slug}
-              style="display:flex; gap:10px; align-items:baseline; padding:6px 8px; border-radius:var(--r-sm); text-decoration:none; transition:background .12s ease, color .12s ease;">
-              <span class="t-mono" style="color:var(--warm); min-width:22px; font-weight:500; flex-shrink:0;">{String(idx + 1).padStart(2, '0')}</span>
-              <span style="font-size:13px; line-height:1.35; color:var(--ink-soft);">{h.text}</span>
+            <a href={`#${h.slug}`} class="toc-link" data-slug={h.slug}>
+              <span class="t-mono toc-num">{String(idx + 1).padStart(2, '0')}</span>
+              <span class="toc-text">{h.text}</span>
             </a>
           </li>
         ))}
@@ -116,10 +115,9 @@ const authorInitials = authorName.split(' ').slice(0,2).map((w: string) => w[0])
           <ol style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:2px;">
             {sections.map((h, idx) => (
               <li>
-                <a href={`#${h.slug}`} class="toc-link" data-slug={h.slug}
-                  style="display:flex; gap:10px; align-items:baseline; padding:6px 8px; border-radius:var(--r-sm); text-decoration:none; transition:background .12s ease, color .12s ease;">
-                  <span class="t-mono" style="color:var(--warm); min-width:22px; font-weight:500; flex-shrink:0;">{String(idx + 1).padStart(2, '0')}</span>
-                  <span style="font-size:13px; line-height:1.35; color:var(--ink-soft);">{h.text}</span>
+                <a href={`#${h.slug}`} class="toc-link" data-slug={h.slug}>
+                  <span class="t-mono toc-num">{String(idx + 1).padStart(2, '0')}</span>
+                  <span class="toc-text">{h.text}</span>
                 </a>
               </li>
             ))}
@@ -130,7 +128,7 @@ const authorInitials = authorName.split(' ').slice(0,2).map((w: string) => w[0])
   </div>
 
   <!-- Disclaimer -->
-  <div style="border-left: 3px solid var(--warm); padding: 14px 18px; margin-bottom: 32px; background: var(--paper-2); border-radius: 0 var(--r-sm) var(--r-sm) 0;">
+  <div style="border-left: 3px solid var(--accent); padding: 14px 18px; margin-bottom: 32px; background: var(--paper-2); border-radius: 0 var(--r-sm) var(--r-sm) 0;">
     <p class="t-body" style="margin:0; font-size:13px; color:var(--ink-soft); line-height:1.6;">
       <strong style="color:var(--ink);">Uwaga:</strong> Artykuły na lexpraktyk.pl mają charakter wyłącznie informacyjny i nie stanowią porady prawnej w rozumieniu
       ustawy z dnia 6 lipca 1982 r. o radcach prawnych ani ustawy z dnia 26 maja 1982 r. — Prawo o adwokaturze.
@@ -166,25 +164,44 @@ const authorInitials = authorName.split(' ').slice(0,2).map((w: string) => w[0])
 </BaseLayout>
 
 <style>
+  .toc-link {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 6px 8px;
+    border-radius: var(--r-sm);
+    text-decoration: none;
+    transition: background .12s ease, color .12s ease;
+  }
+  .toc-num {
+    color: var(--accent);
+    min-width: 22px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .toc-text {
+    font-size: 13px;
+    line-height: 1.35;
+    color: var(--ink-soft);
+  }
   .toc-link:hover { background: var(--paper-2); }
-  .toc-link:hover span:last-child { color: var(--ink); }
-  .toc-link.active { background: var(--warm-bg); }
-  .toc-link.active span:first-child { color: var(--warm-deep); }
-  .toc-link.active span:last-child { color: var(--ink); font-weight: 500; }
+  .toc-link:hover .toc-text { color: var(--ink); }
+  .toc-link.active { background: var(--accent-bg); }
+  .toc-link.active .toc-num { color: var(--accent-deep); }
+  .toc-link.active .toc-text { color: var(--ink); font-weight: 500; }
 </style>
 
 <script>
-  const links = document.querySelectorAll('.toc-link');
+  const links = document.querySelectorAll<HTMLAnchorElement>('.toc-link');
   if (links.length > 0) {
     const headingEls = Array.from(links).map(l =>
       document.getElementById(l.dataset.slug || '')
     ).filter(Boolean) as HTMLElement[];
 
     function setActive() {
-      const scrollY = window.scrollY + 120;
       let active = headingEls[0];
       for (const el of headingEls) {
-        if (el.offsetTop <= scrollY) active = el;
+        if (el.getBoundingClientRect().top <= 120) active = el;
       }
       links.forEach(l => {
         l.classList.toggle('active', l.dataset.slug === active?.id);
