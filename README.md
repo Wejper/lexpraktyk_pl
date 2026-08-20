@@ -152,7 +152,16 @@ Przy 0,5% konwersji odwiedzin na płatną sprawę × 650 PLN marży + retainery 
 - **Blockquote (`>`) dla kluczowych myśli** — każdy artykuł powinien mieć 2–4 cytaty wyróżniające najważniejszy wniosek lub praktyczną radę.
 - **Słowa kluczowe od intencji szukającego** — tytułuj i pisz pod frazy które ktoś wpisuje w chwili problemu: "jak usunąć fałszywą opinię z Google", "klient grozi jedną gwiazdką", "opinia od osoby która nie była pacjentem." Nie pod frazy akademickie.
 - **Konkretne kroki, nie teoria** — czytelnik ma problem teraz. Daj mu listę działań, nie wykład z prawa.
-- **Długość**: 600–1000 słów na artykuł. Żadnego lania wody żeby było dłużej.
+- **Długość — skalowana do konkurencyjności frazy** (zaktualizowane 2026-08-20 na podstawie danych z Search Console):
+  - **Frazy niszowe** (opinia od pacjenta, szantaż 1★, wizerunek lekarza) — 750–1000 słów wystarcza. To tam realnie rankujemy: pozycje 7–15.
+  - **Frazy konkurencyjne** (zachowek, eksmisja, testament, spadek — wszystko o co walczy każda kancelaria z blogiem) — **minimum 1200 słów**, i to nie objętości dla objętości, tylko realnie szerszego pokrycia tematu: warianty sytuacji, przykłady liczbowe, sekcja FAQ pod długi ogon.
+  - Żadnego lania wody żeby było dłużej. Jeśli temat da się wyczerpać w 700 słowach — znaczy że fraza jest niszowa i 700 słów jest OK.
+
+  > Dane, które to uzasadniają: wszystkie artykuły rankujące w top 20 mają 750+ słów (`opinia-od-pacjenta` 912 sł. → poz. 7,7; `umowa-przedwstepna` 913 sł. → poz. 7,0). Ale sama długość nie wystarcza — `eksmisja-lokatora` ma 734 słowa i siedzi na pozycji 82, bo fraza jest mocno konkurencyjna. Długość jest przybliżeniem głębokości pokrycia tematu, nie progiem do przekroczenia.
+
+- **Bezpośrednia odpowiedź na początku** — jeśli tytuł jest pytaniem („komu należy się zachowek"), odpowiedź musi paść w pierwszych 2–3 zdaniach pod H1, przed kontekstem i definicjami. Pytania to szansa na featured snippet, ale tylko gdy Google znajdzie zwięzłą odpowiedź od razu.
+
+- **Tytuł w takiej formie, jakiej ludzie faktycznie szukają** — sprawdź warianty frazy w Search Console przed napisaniem tytułu. Przykład: „komu **należy się** zachowek" ma ~3× więcej wyświetleń niż „komu **przysługuje** zachowek", a artykuł był zoptymalizowany pod tę rzadszą formę.
 - **Podstawy prawne — obowiązkowo, ale niewidocznie:** każde twierdzenie prawne musi mieć oparcie w realnej polskiej ustawie z Dziennika Ustaw RP. Cytuj przepis naturalnie w tekście ("art. 17 RODO daje Ci 30 dni na odpowiedź platformy") lub zbierz wszystkie podstawy w sekcji na końcu artykułu. Nie pisz o prawie bez przepisu — nie piszemy poezji, piszemy praktyczny poradnik prawny. Przykłady: Kodeks cywilny (Dz.U. 1964 nr 16 poz. 93), Kodeks karny (Dz.U. 1997 nr 88 poz. 553), RODO (Rozporządzenie UE 2016/679), ustawa o ochronie danych osobowych (Dz.U. 2018 poz. 1000).
 
 ---
