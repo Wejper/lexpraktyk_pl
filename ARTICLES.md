@@ -56,7 +56,25 @@ Retiered below.
 - [x] Umowa z wykonawcą: co wpisać
 - [x] Ochrona wizerunku lekarza w internecie
 
-## Scheduled (10 — every 5 days, Jul 16 – Aug 30, 2026)
+## Scheduled — batch 2 (10 — every 5 days, Sep 4 – Oct 19, 2026)
+
+Pierwsza partia napisana już pod nową regułę długości (977–1321 słów).
+Klastry przeplatane celowo, żeby nie publikować sześciu tekstów reputacyjnych z rzędu.
+
+- [x] 2026-09-04 · Tajemnica zawodowa a negatywna opinia: dlaczego nie możesz się bronić publicznie *(flagowy, 1321 sł.)*
+- [x] 2026-09-09 · Jak odpowiedzieć na negatywną opinię, nie łamiąc tajemnicy zawodowej *(szablony)*
+- [x] 2026-09-14 · Klient żąda zwrotu pieniędzy po wykonanej usłudze: kiedy musisz oddać
+- [x] 2026-09-19 · Wydziedziczenie a zachowek: kiedy pozbawienie zachowku jest skuteczne
+- [x] 2026-09-24 · Groźba negatywnej opinii jako wymuszenie: kiedy to przestępstwo
+- [x] 2026-09-29 · Zachowek od darowizny: gdy spadkodawca rozdał majątek za życia
+- [x] 2026-10-04 · Umowa i protokół odbioru: jak zabezpieczyć się przed roszczeniowym klientem
+- [x] 2026-10-09 · Przedawnienie zachowku: od kiedy liczyć 5 lat i co przerywa bieg
+- [x] 2026-10-14 · Opinia ujawniająca przebieg leczenia: co wolno pacjentowi, a czego Tobie
+- [x] 2026-10-19 · Hejt w komentarzach: odpowiedzialność administratora fanpage'a i forum
+
+**Kolejka wysycha po 2026-10-19** — następną partię przygotować do początku października.
+
+## Scheduled — batch 1 (10 — every 5 days, Jul 16 – Aug 30, 2026)
 
 - [x] 2026-07-16 · Umowa najmu okazjonalnego: jak wynająć mieszkanie i się zabezpieczyć
 - [x] 2026-07-21 · Eksmisja lokatora, który nie płaci: ile trwa i jak przebiega
@@ -93,9 +111,9 @@ Robić przed pisaniem czegokolwiek nowego.
 
 Popyt widoczny w Search Console, brak pokrycia:
 
-- [ ] Wydziedziczenie a zachowek — kiedy pozbawienie zachowku jest skuteczne (art. 1008 k.c.)
-- [ ] Zachowek od darowizny — gdy spadkodawca rozdał majątek za życia
-- [ ] Przedawnienie zachowku — 5 lat, od kiedy liczyć i co przerywa bieg
+- [x] ✅ zaplanowany 2026-09-19 · Wydziedziczenie a zachowek — kiedy pozbawienie zachowku jest skuteczne (art. 1008 k.c.)
+- [x] ✅ zaplanowany 2026-09-29 · Zachowek od darowizny — gdy spadkodawca rozdał majątek za życia
+- [x] ✅ zaplanowany 2026-10-09 · Przedawnienie zachowku — 5 lat, od kiedy liczyć i co przerywa bieg
 
 # TIER 2 — Reputacja (jedyna kategoria, w której realnie rankujemy)
 
@@ -103,7 +121,7 @@ Niska konkurencja, niski wolumen, ale top 7–15. Buduje autorytet tematyczny i 
 usługę Reputacja (Milestone 2 — jedyna kategoria z realną intencją zakupową).
 750–1000 słów wystarcza.
 
-- [ ] Hejt w komentarzach — odpowiedzialność administratora fanpage'a i forum
+- [x] ✅ zaplanowany 2026-10-19 · Hejt w komentarzach — odpowiedzialność administratora fanpage'a i forum
 - [ ] Stalking i uporczywe nękanie (art. 190a § 1 KK) — jak udokumentować i zgłosić
 - [ ] Czarny PR konkurencji — nieuczciwa konkurencja w praktyce (art. 14 uznk)
 - [ ] Krytyka firmy na YouTube i TikToku — recenzja czy naruszenie
@@ -133,7 +151,7 @@ dobrej treści w polskim internecie.
 muszą linkować do nich zamiast powtarzać, a same trzymać się swojego kąta.
 
 **Flagowy (1200+ słów, fraza konkurencyjna):**
-- [ ] **Tajemnica zawodowa a odpowiedź na negatywną opinię — dlaczego nie możesz się bronić
+- [x] ✅ zaplanowany 2026-09-04 · **Tajemnica zawodowa a odpowiedź na negatywną opinię — dlaczego nie możesz się bronić
       publicznie.** Rdzeń klastra. Dlaczego odpowiedź „przyjmowałem Panią 12 marca, zabieg
       przebiegł prawidłowo" to naruszenie tajemnicy lekarskiej *i* RODO jednocześnie.
       Podstawy: art. 40 ustawy o zawodach lekarza i lekarza dentysty, art. 6 Prawa o adwokaturze,
@@ -143,22 +161,22 @@ muszą linkować do nich zamiast powtarzać, a same trzymać się swojego kąta.
       z tajemnicy? (Nie zwalnia — i to jest teza artykułu.)
 
 **Satelity (750–1000 słów):**
-- [ ] Jak odpowiedzieć na negatywną opinię, nie łamiąc tajemnicy zawodowej — konkretne szablony
+- [x] ✅ zaplanowany 2026-09-09 · Jak odpowiedzieć na negatywną opinię, nie łamiąc tajemnicy zawodowej — konkretne szablony
       odpowiedzi, które nie potwierdzają ani nie zaprzeczają, że ktoś był klientem. Najbardziej
       praktyczny artykuł klastra i naturalny lead magnet do wzorów pism.
-- [ ] Klient żąda zwrotu pieniędzy po wykonanej usłudze — kiedy naprawdę musisz zwrócić.
+- [x] ✅ zaplanowany 2026-09-14 · Klient żąda zwrotu pieniędzy po wykonanej usłudze — kiedy naprawdę musisz zwrócić.
       Strona kontraktowa, nie reputacyjna: umowa o dzieło (rezultat) vs zlecenie (staranne
       działanie), rękojmia przy usługach, granice praw konsumenta, brak prawa odstąpienia
       po wykonaniu usługi za wyraźną zgodą. Odpowiada na pytanie, którego pozostałe artykuły
       nie tykają: *czy to żądanie jest w ogóle zasadne?*
-- [ ] Groźba negatywnej opinii jako wymuszenie — kiedy to przestępstwo (art. 191 § 1 i art. 286 KK).
+- [x] ✅ zaplanowany 2026-09-24 · Groźba negatywnej opinii jako wymuszenie — kiedy to przestępstwo (art. 191 § 1 i art. 286 KK).
       Pogłębienie prawnokarne sekcji „Czy to jest przestępstwo" z artykułu o szantażu:
       granica między dozwolonym naciskiem a groźbą bezprawną, jak zabezpieczyć dowody,
       jak wygląda zawiadomienie. **Musi linkować do `szantaz-reputacyjny`, nie powtarzać go.**
-- [ ] Umowa i protokół odbioru jako ochrona przed roszczeniowym klientem — co wpisać, zanim
+- [x] ✅ zaplanowany 2026-10-04 · Umowa i protokół odbioru jako ochrona przed roszczeniowym klientem — co wpisać, zanim
       pojawi się spór. Akceptacja etapów, protokół odbioru, procedura reklamacyjna, klauzula
       o zakresie usługi. Prewencja zamiast gaszenia pożaru; łączy Reputację z Biznesem.
-- [ ] Opinia ujawniająca przebieg leczenia lub sprawy — co wolno pacjentowi, a czego Tobie.
+- [x] ✅ zaplanowany 2026-10-14 · Opinia ujawniająca przebieg leczenia lub sprawy — co wolno pacjentowi, a czego Tobie.
       Czy pacjent może opisać publicznie swoją dokumentację (może — to jego dane) i dlaczego
       nie odblokowuje to Twojego prawa do odpowiedzi.
 
