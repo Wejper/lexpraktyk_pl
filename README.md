@@ -157,7 +157,9 @@ Przy 0,5% konwersji odwiedzin na płatną sprawę × 650 PLN marży + retainery 
   - **Frazy konkurencyjne** (zachowek, eksmisja, testament, spadek — wszystko o co walczy każda kancelaria z blogiem) — **minimum 1200 słów**, i to nie objętości dla objętości, tylko realnie szerszego pokrycia tematu: warianty sytuacji, przykłady liczbowe, sekcja FAQ pod długi ogon.
   - Żadnego lania wody żeby było dłużej. Jeśli temat da się wyczerpać w 700 słowach — znaczy że fraza jest niszowa i 700 słów jest OK.
 
-  > Dane, które to uzasadniają: wszystkie artykuły rankujące w top 20 mają 750+ słów (`opinia-od-pacjenta` 912 sł. → poz. 7,7; `umowa-przedwstepna` 913 sł. → poz. 7,0). Ale sama długość nie wystarcza — `eksmisja-lokatora` ma 734 słowa i siedzi na pozycji 82, bo fraza jest mocno konkurencyjna. Długość jest przybliżeniem głębokości pokrycia tematu, nie progiem do przekroczenia.
+  > **Korekta 2026-08-20 — policzona korelacja jest słaba.** Pierwotnie zapisaliśmy tę regułę na podstawie obserwacji, że artykuły w top 20 mają 750+ słów. Po policzeniu korelacji między liczbą słów a średnią pozycją wychodzi **−0,13** na lexpraktyk.pl (n=11) i **−0,00** na ogrzeje.pl (n=7). To praktycznie brak zależności. Na ogrzeje artykuł 212-słowowy zajmuje poz. 10, a 684-słowowy poz. 81.
+  >
+  > Co naprawdę różnicuje wyniki, to **konkurencyjność frazy**, nie długość: `eksmisja-lokatora` ma 734 słowa i siedzi na poz. 82, bo o tę frazę walczy każda kancelaria; `opinia-od-pacjenta` ma 912 słów i poz. 7,7, bo prawie nikt o tym nie pisze. Długość traktujemy więc jako **konsekwencję** rzetelnego pokrycia konkurencyjnego tematu, a nie jako dźwignię samą w sobie. Pisanie dłużej bez pogłębienia treści nie podniesie pozycji.
 
 - **Bezpośrednia odpowiedź na początku** — jeśli tytuł jest pytaniem („komu należy się zachowek"), odpowiedź musi paść w pierwszych 2–3 zdaniach pod H1, przed kontekstem i definicjami. Pytania to szansa na featured snippet, ale tylko gdy Google znajdzie zwięzłą odpowiedź od razu.
 
