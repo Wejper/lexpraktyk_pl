@@ -11,7 +11,7 @@ import { CATEGORIES } from '../utils/categories';
     <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
       <a href="/" class="btn btn-primary">Strona główna</a>
       {Object.entries(CATEGORIES).map(([slug, { label }]) => (
-        <a href={`/${slug}`} class="btn btn-outline">{label}</a>
+        <a href={`/${slug}/`} class="btn btn-outline">{label}</a>
       ))}
     </div>
   </div>
