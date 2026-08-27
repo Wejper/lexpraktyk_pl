@@ -190,42 +190,40 @@ Przy 0,5% konwersji odwiedzin na płatną sprawę × 650 PLN marży + retainery 
 | 8 | 50 000 PLN/miesiąc przychód | ⬜ do zrobienia |
 
 
-## TODO: Konwencja adresów URL — przenieść z ogrzeje.pl (2026-08-27)
+## Konwencja adresów URL — mieszana (wdrożona 2026-08-27)
 
-Na ogrzeje.pl obowiązuje od 2026-08-27 **konwencja mieszana**: zbiory (kategorie,
-katalogi) kończą się slashem, dokumenty (artykuły, wzory, tagi) nie, a forma
-niekanoniczna zawsze zwraca 301. Tę samą regułę trzeba wdrożyć tutaj — dziś
-lexpraktyk nie ma żadnej konwencji (`trailingSlash` niejawnie 'ignore', obie
-formy mogą zwracać 200 = duplikaty dla Google), a prerenderowane strony w
-docroot dostają 301 doklejające slash od LiteSpeed (np. `/artykuly`).
-
-Docelowa mapa:
+**Zbiory kończą się slashem, dokumenty nie.** Forma niekanoniczna zawsze
+zwraca 301. Wdrożone 1:1 z ogrzeje.pl (pełny opis mechanizmu i ślepych
+uliczek: README ogrzeje_pl, sekcja „Konwencja adresów — mieszana").
 
 ```
 /nieruchomosci/   /biznes/   /reputacja/   ← kategorie      (zbiór, slash)
 /kancelarie/                               ← katalog        (zbiór, slash)
 /wzory/                                    ← lista wzorów   (zbiór, slash)
 /artykuly/{slug}                           ← artykuł        (dokument, bez slasha)
+/kancelarie/dodaj, /kancelarie/{id}        ← podstrony      (dokument, bez slasha)
 /tag/{tag}                                 ← tag            (dokument, bez slasha)
 ```
 
-Wdrożenie 1:1 według README ogrzeje.pl, sekcja „Konwencja adresów — mieszana"
-(ogrzeje_pl, commity 9a0cfc6, 6c9ff58, 72846e0). W skrócie — infrastruktura
-jest identyczna (ten sam serwer seohost, LiteSpeed + Passenger/Node), więc
-kroki są te same:
+Trzy warstwy, które MUSZĄ być spójne:
 
-1. Statyczny build przenieść z `public_html/` do `domains/lexpraktyk.pl/client/`
-   (adapter node szuka klienta względem `server/` — inaczej 404) i opróżnić
-   docroot z katalogów stron; `.htaccess` tylko z warunkiem `-f`. Strony
-   prerenderowane NIE mogą leżeć jako katalogi w docroot — LiteSpeed dokleja
-   im slash **przed** regułami `.htaccess`, tego nie da się obejść rewritem.
-2. `trailingSlash: 'never'` w `astro.config.mjs`.
-3. Wrapper w `server-start.mjs` z listą `COLLECTIONS` (301 bez→ze slashem,
-   wewnętrzne przepisanie formy ze slashem).
-4. `src/utils/urls.ts` z `COLLECTION_PATHS` + `canonicalPath()` — linki,
-   canonical i sitemapa z jednego źródła.
-5. Wszystkie linki wewnętrzne do zbiorów ze slashem; przekierowania w
-   `astro.config.mjs` celują od razu w formę kanoniczną.
+1. **`astro.config.mjs`**: `trailingSlash: 'never'` — globalnie.
+2. **`server-start.mjs`**: lista `COLLECTIONS` robi wyjątek dla zbiorów
+   (301 bez→ze slashem, wewnętrzne przepisanie formy ze slashem). Wrapper
+   widzi każde żądanie, bo cały ruch HTML idzie przez Node — LiteSpeed
+   serwuje tylko istniejące pliki (`.htaccess`: sam warunek `-f`).
+3. **`src/utils/urls.ts`**: `COLLECTION_PATHS` (sync z `COLLECTIONS`!) +
+   `canonicalPath()` — canonical (`BaseLayout.astro`) i sitemapa.
 
-> Stare adresy są zaindeksowane (27+ artykułów w Search Console) — każda
-> zmiana formy musi przejść przez 301, nigdy przez 404.
+**Dodajesz nowy zbiór?** Dopisz ścieżkę w `COLLECTION_PATHS`
+(`src/utils/urls.ts`) i `COLLECTIONS` (`server-start.mjs`). Nic więcej.
+
+**Serwer:** build statyczny leży w `domains/lexpraktyk.pl/client/` (serwuje
+go Node), NIE w `public_html` — LiteSpeed dokleja slash każdemu istniejącemu
+katalogowi w docroot zanim przetworzy `.htaccess`, tego nie da się obejść.
+W `public_html` zostały tylko `.htaccess` i `images/covers/` (magazyn okładek).
+Okładki mintuje wyłącznie build CI (`GENERATE_COVERS=1`); strony SSR czytają
+`public/images/covers/`, które deploy lustrzy z magazynu po każdym wdrożeniu.
+
+> Stare adresy są zaindeksowane — każda zmiana formy przechodzi przez 301,
+> nigdy przez 404.
