@@ -1,0 +1,17 @@
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# design prototype leftovers — kept on disk for archiving, not tracked
+design_handoff_lexpraktyk/

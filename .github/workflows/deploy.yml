@@ -36,19 +36,25 @@ jobs:
           rsync -az \
             -e "ssh -i ~/.ssh/deploy_key -p 57185" \
             ${{ secrets.SEOHOST_USER }}@${{ secrets.SEOHOST_HOST }}:/home/${{ secrets.SEOHOST_USER }}/domains/lexpraktyk.pl/public_html/images/covers/ \
-            public/images/covers/ || true
+            public/images/covers/
+          test -f public/images/covers/manifest.json
 
       - name: Build
         run: npm run build
         env:
+          GENERATE_COVERS: '1'
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
 
       - name: Deploy static files
+        # Served by the Node adapter (Passenger), not LiteSpeed: pages must NOT
+        # exist as directories in public_html, or LiteSpeed 301s them to the
+        # slash form before .htaccess is consulted. public_html keeps only
+        # .htaccess and images/covers (the cover store, served fast via -f).
         run: |
-          rsync -az --delete --exclude=images/covers/ --exclude=.htaccess \
+          rsync -az --delete \
             -e "ssh -i ~/.ssh/deploy_key -p 57185" \
             dist/client/ \
-            ${{ secrets.SEOHOST_USER }}@${{ secrets.SEOHOST_HOST }}:/home/${{ secrets.SEOHOST_USER }}/domains/lexpraktyk.pl/public_html/
+            ${{ secrets.SEOHOST_USER }}@${{ secrets.SEOHOST_HOST }}:/home/${{ secrets.SEOHOST_USER }}/domains/lexpraktyk.pl/client/
 
       - name: Deploy server
         run: |
@@ -76,7 +82,16 @@ jobs:
 
       - name: Upload cover images
         run: |
-          rsync -az --delete --checksum \
+          rsync -az --checksum \
             -e "ssh -i ~/.ssh/deploy_key -p 57185" \
             public/images/covers/ \
             ${{ secrets.SEOHOST_USER }}@${{ secrets.SEOHOST_HOST }}:/home/${{ secrets.SEOHOST_USER }}/domains/lexpraktyk.pl/public_html/images/covers/
+
+      - name: Sync covers store to the SSR runtime dir
+        # SSR pages resolve covers from domains/lexpraktyk.pl/public/images/covers
+        # at request time; keep it identical to the store so category thumbnails
+        # always match the article covers.
+        run: |
+          ssh -i ~/.ssh/deploy_key -p 57185 \
+            ${{ secrets.SEOHOST_USER }}@${{ secrets.SEOHOST_HOST }} \
+            "rsync -a ~/domains/lexpraktyk.pl/public_html/images/covers/ ~/domains/lexpraktyk.pl/public/images/covers/"

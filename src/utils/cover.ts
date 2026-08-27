@@ -39,6 +39,13 @@ export async function getCoverImage(cover?: string, tags?: string[], coverQuery?
     }
   }
 
+  // Only the CI build may mint new covers (GENERATE_COVERS=1). At runtime a
+  // missing manifest entry must NOT fetch a random photo — that is how SSR
+  // pages drifted from the prerendered pages and covers kept changing.
+  if (!process.env.GENERATE_COVERS) {
+    return `https://picsum.photos/seed/${articleSlug ?? 'lex'}/800/450`;
+  }
+
   const filename = `${toFilename(query, articleSlug)}.jpg`;
   const localPath = path.join(COVERS_DIR, filename);
   const publicPath = `/images/covers/${filename}`;

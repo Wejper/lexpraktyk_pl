@@ -35,7 +35,7 @@ try {
 }
 
 if (!company) {
-  return Astro.redirect('/kancelarie', 302);
+  return Astro.redirect('/kancelarie/', 302);
 }
 
 const specs = company.specializations ? company.specializations.split(',').map(s => s.trim()).filter(Boolean) : [];
@@ -53,7 +53,7 @@ function initials(name: string): string {
 
     <div style="padding:8px 0 28px; border-bottom:1px solid var(--rule);">
       <div class="t-mono">
-        <a href="/">lexpraktyk.pl</a> / <a href="/kancelarie">kancelarie</a> / {company.name}
+        <a href="/">lexpraktyk.pl</a> / <a href="/kancelarie/">kancelarie</a> / {company.name}
       </div>
     </div>
 
@@ -106,7 +106,7 @@ function initials(name: string): string {
     )}
 
     <div style="margin-top:28px;">
-      <a href="/kancelarie" class="btn">← Wróć do katalogu</a>
+      <a href="/kancelarie/" class="btn">← Wróć do katalogu</a>
     </div>
 
   </div>

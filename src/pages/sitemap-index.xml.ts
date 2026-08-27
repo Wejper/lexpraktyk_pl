@@ -19,7 +19,7 @@ export const GET: APIRoute = async () => {
     ...staticPages.map(({ url }) => `<url><loc>${SITE}${url}</loc></url>`),
     ...articles.map(a => {
       const lastmod = a.data.publishDate.toISOString().slice(0, 10);
-      return `<url><loc>${SITE}/artykuly/${a.id}/</loc><lastmod>${lastmod}</lastmod></url>`;
+      return `<url><loc>${SITE}/artykuly/${a.id}</loc><lastmod>${lastmod}</lastmod></url>`;
     }),
   ];
 

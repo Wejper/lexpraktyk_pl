@@ -1,5 +1,6 @@
 ---
 import { SEO } from 'astro-seo';
+import { canonicalPath } from '../utils/urls';
 import '../styles/global.css';
 import { CATEGORIES } from '../utils/categories';
 
@@ -11,7 +12,7 @@ interface Props {
 }
 
 const { title, description, image, noindex } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(canonicalPath(Astro.url.pathname), Astro.site);
 const year = new Date().getFullYear();
 ---
 
@@ -70,15 +71,15 @@ const year = new Date().getFullYear();
           </button>
           <nav class="nav" id="main-nav">
             {Object.entries(CATEGORIES).map(([slug, { label }]) => (
-              <a href={`/${slug}`} class={Astro.url.pathname.startsWith(`/${slug}`) ? 'active' : ''}>
+              <a href={`/${slug}/`} class={Astro.url.pathname.startsWith(`/${slug}`) ? 'active' : ''}>
                 {label}
               </a>
             ))}
-            <a href="/wzory" class={Astro.url.pathname.startsWith('/wzory') ? 'active' : ''}>Wzory pism</a>
-            <a href="/kancelarie" class={Astro.url.pathname.startsWith('/kancelarie') ? 'active' : ''}>Kancelarie</a>
+            <a href="/wzory/" class={Astro.url.pathname.startsWith('/wzory') ? 'active' : ''}>Wzory pism</a>
+            <a href="/kancelarie/" class={Astro.url.pathname.startsWith('/kancelarie') ? 'active' : ''}>Kancelarie</a>
           </nav>
           <div class="flex-1"></div>
-          <a class="cta-pill" href="/kancelarie">Zgłoś sprawę →</a>
+          <a class="cta-pill" href="/kancelarie/">Zgłoś sprawę →</a>
         </div>
       </div>
     </header>
@@ -111,10 +112,10 @@ const year = new Date().getFullYear();
             <h4>Kategorie</h4>
             <ul>
               {Object.entries(CATEGORIES).map(([slug, { label }]) => (
-                <li><a href={`/${slug}`}>{label}</a></li>
+                <li><a href={`/${slug}/`}>{label}</a></li>
               ))}
-              <li><a href="/wzory">Wzory pism</a></li>
-              <li><a href="/kancelarie">Kancelarie</a></li>
+              <li><a href="/wzory/">Wzory pism</a></li>
+              <li><a href="/kancelarie/">Kancelarie</a></li>
             </ul>
           </div>
           <!-- Col 4: Newsletter -->
