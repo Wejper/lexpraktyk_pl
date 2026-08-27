@@ -188,3 +188,44 @@ Przy 0,5% konwersji odwiedzin na płatną sprawę × 650 PLN marży + retainery 
 | 6 | 10 firm na miesięcznym retainerze | ⬜ do zrobienia |
 | 7 | 30 000 odwiedzin/miesiąc organic | ⬜ do zrobienia |
 | 8 | 50 000 PLN/miesiąc przychód | ⬜ do zrobienia |
+
+
+## TODO: Konwencja adresów URL — przenieść z ogrzeje.pl (2026-08-27)
+
+Na ogrzeje.pl obowiązuje od 2026-08-27 **konwencja mieszana**: zbiory (kategorie,
+katalogi) kończą się slashem, dokumenty (artykuły, wzory, tagi) nie, a forma
+niekanoniczna zawsze zwraca 301. Tę samą regułę trzeba wdrożyć tutaj — dziś
+lexpraktyk nie ma żadnej konwencji (`trailingSlash` niejawnie 'ignore', obie
+formy mogą zwracać 200 = duplikaty dla Google), a prerenderowane strony w
+docroot dostają 301 doklejające slash od LiteSpeed (np. `/artykuly`).
+
+Docelowa mapa:
+
+```
+/nieruchomosci/   /biznes/   /reputacja/   ← kategorie      (zbiór, slash)
+/kancelarie/                               ← katalog        (zbiór, slash)
+/wzory/                                    ← lista wzorów   (zbiór, slash)
+/artykuly/{slug}                           ← artykuł        (dokument, bez slasha)
+/tag/{tag}                                 ← tag            (dokument, bez slasha)
+```
+
+Wdrożenie 1:1 według README ogrzeje.pl, sekcja „Konwencja adresów — mieszana"
+(ogrzeje_pl, commity 9a0cfc6, 6c9ff58, 72846e0). W skrócie — infrastruktura
+jest identyczna (ten sam serwer seohost, LiteSpeed + Passenger/Node), więc
+kroki są te same:
+
+1. Statyczny build przenieść z `public_html/` do `domains/lexpraktyk.pl/client/`
+   (adapter node szuka klienta względem `server/` — inaczej 404) i opróżnić
+   docroot z katalogów stron; `.htaccess` tylko z warunkiem `-f`. Strony
+   prerenderowane NIE mogą leżeć jako katalogi w docroot — LiteSpeed dokleja
+   im slash **przed** regułami `.htaccess`, tego nie da się obejść rewritem.
+2. `trailingSlash: 'never'` w `astro.config.mjs`.
+3. Wrapper w `server-start.mjs` z listą `COLLECTIONS` (301 bez→ze slashem,
+   wewnętrzne przepisanie formy ze slashem).
+4. `src/utils/urls.ts` z `COLLECTION_PATHS` + `canonicalPath()` — linki,
+   canonical i sitemapa z jednego źródła.
+5. Wszystkie linki wewnętrzne do zbiorów ze slashem; przekierowania w
+   `astro.config.mjs` celują od razu w formę kanoniczną.
+
+> Stare adresy są zaindeksowane (27+ artykułów w Search Console) — każda
+> zmiana formy musi przejść przez 301, nigdy przez 404.
