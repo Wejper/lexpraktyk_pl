@@ -19,9 +19,10 @@ export const CATEGORIES = {
       'spadek', 'zachowek', 'testament', 'dział spadku', 'podatek', 'zakup mieszkania',
       'wady mieszkania', 'rękojmia', 'najem', 'zasiedzenie', 'agent nieruchomości',
       'odbiór mieszkania', 'rynek wtórny', 'umowa przedwstępna', 'umowa z wykonawcą',
-      'odrzucenie spadku', 'stwierdzenie nabycia spadku', 'urząd skarbowy', 'remont', 'budowa'],
+      'odrzucenie spadku', 'stwierdzenie nabycia spadku', 'urząd skarbowy', 'remont', 'budowa',
+      'eksmisja', 'lokal socjalny'],
     core: ['nieruchomości', 'spadek', 'dziedziczenie', 'zachowek', 'testament', 'zakup mieszkania',
-      'deweloper', 'księga wieczysta', 'najem', 'zasiedzenie'],
+      'deweloper', 'księga wieczysta', 'najem', 'zasiedzenie', 'eksmisja'],
   },
   biznes: {
     label: 'Biznes',
