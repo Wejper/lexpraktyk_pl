@@ -6,20 +6,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleList from '../components/ArticleList.astro';
 import NotFound from '../components/NotFound.astro';
 import { CATEGORIES, type CategorySlug } from '../utils/categories';
+import { articlesInCategory } from '../utils/taxonomy';
 
 const { category } = Astro.params as { category: CategorySlug };
 const isValid = category && category in CATEGORIES;
 
 if (!isValid) Astro.response.status = 404;
 
-const { label, description, num, tagline, tags: categoryTags } = isValid
+const { label, description, num, tagline } = isValid
   ? CATEGORIES[category]
-  : { label: '', description: '', num: '', tagline: '', tags: [] };
+  : { label: '', description: '', num: '', tagline: '' };
 
 const now = new Date();
 const articles = isValid
-  ? (await getCollection('articles', ({ data }) => data.published && new Date(data.publishDate) <= now))
-      .filter((a) => a.data.tags?.some((t) => (categoryTags as readonly string[]).includes(t)))
+  ? articlesInCategory(
+      await getCollection('articles', ({ data }) => data.published && new Date(data.publishDate) <= now),
+      category
+    )
       .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   : [];
 ---
