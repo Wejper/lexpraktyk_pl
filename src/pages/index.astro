@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleList from '../components/ArticleList.astro';
 import { getCoverImage } from '../utils/cover';
 import { CATEGORIES } from '../utils/categories';
+import { primaryCategory, tagWeights } from '../utils/taxonomy';
 
 const now = new Date();
 const allArticles = (await getCollection('articles', ({ data }) => data.published && new Date(data.publishDate) <= now))
@@ -16,10 +17,14 @@ const featuredCover = featured ? await getCoverImage(featured.data.cover, featur
 
 const articleCount = allArticles.length;
 
-// Category counts
+// Liczniki i trio liczone tą samą regułą co listingi kategorii — inaczej home pokazuje
+// inne liczby niż strona, na którą prowadzi.
+const weights = tagWeights(allArticles);
+const primary = new Map(allArticles.map(a => [a.id, primaryCategory(a, weights)]));
+
 const categoryCounts: Record<string, number> = {};
-for (const [slug, { tags: catTags }] of Object.entries(CATEGORIES)) {
-  categoryCounts[slug] = allArticles.filter(a => a.data.tags?.some(t => (catTags as readonly string[]).includes(t))).length;
+for (const slug of Object.keys(CATEGORIES)) {
+  categoryCounts[slug] = allArticles.filter(a => primary.get(a.id) === slug).length;
 }
 
 // "Co czytają" trio — one unique article per first 3 categories
@@ -27,8 +32,7 @@ const trioCats = ['nieruchomosci', 'biznes', 'reputacja'] as const;
 const usedIds = new Set<string>();
 const trioArticles = await Promise.all(
   trioCats.map(async (cat) => {
-    const catTags = CATEGORIES[cat].tags as readonly string[];
-    const article = allArticles.find(a => !usedIds.has(a.id) && a.data.tags?.some(t => catTags.includes(t)));
+    const article = allArticles.find(a => !usedIds.has(a.id) && primary.get(a.id) === cat);
     if (article) usedIds.add(article.id);
     const cover = article ? await getCoverImage(article.data.cover, article.data.tags, article.data.coverQuery, article.id) : '';
     return { cat, article, cover, label: CATEGORIES[cat].label };
@@ -93,7 +97,7 @@ const popularTags = ['zachowek','testament','notariusz','księga wieczysta','wyp
     <section>
       <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:16px;">
         <h2 class="h-headline" style="font-size:18px; margin:0;">Najnowsze</h2>
-        <a href="#" class="t-mono" style="color:var(--warm-deep);">wszystkie artykuły →</a>
+        <a href="#kategorie" class="t-mono" style="color:var(--warm-deep);">wszystkie artykuły →</a>
       </div>
       <ArticleList articles={latest.slice(0,8)} />
       {latest.length > 8 && (
@@ -111,7 +115,7 @@ const popularTags = ['zachowek','testament','notariusz','księga wieczysta','wyp
     <aside style="display:flex; flex-direction:column; gap:24px;">
       <!-- Categories card -->
       <div class="card" style="padding:20px; overflow:visible;">
-        <h3 class="h-eyebrow" style="margin:0 0 12px;">Kategorie</h3>
+        <h3 id="kategorie" class="h-eyebrow" style="margin:0 0 12px;">Kategorie</h3>
         {Object.entries(CATEGORIES).map(([slug, { label }]) => (
           <a
             href={`/${slug}/`}
@@ -171,7 +175,6 @@ const popularTags = ['zachowek','testament','notariusz','księga wieczysta','wyp
       <div class="h-eyebrow">Przekrój</div>
       <h2 class="h-headline">Co czytają w tym tygodniu</h2>
     </div>
-    <a href="#" class="t-mono" style="color:var(--warm-deep);">archiwum →</a>
   </div>
   <div class="trio-grid" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-bottom:64px;">
     {trioArticles.map(({ cat, article, cover, label }) => article && (
