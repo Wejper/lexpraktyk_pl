@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "tax:audit": "node scripts/audit-taxonomy.mjs"
+    "tax:audit": "node scripts/audit-taxonomy.mjs",
+    "links:audit": "node scripts/audit-links.mjs tajemnica-zawodowa-a-odpowiedz-na-opinie szantaz-reputacyjny-jak-reagowac zasiedzenie-nieruchomosci-kiedy-mozna-nabyc umowa-najmu-okazjonalnego-jak-sie-zabezpieczyc"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
