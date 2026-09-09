@@ -5,9 +5,14 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleList from '../../components/ArticleList.astro';
 
+import { MERGED_TAGS } from '../../utils/categories';
+
 const { tag } = Astro.params;
 
 if (!tag) Astro.response.status = 404;
+
+// Tag scalony z innym — prowadź na następcę zamiast pokazywać pustą listę.
+if (tag && MERGED_TAGS[tag]) return Astro.redirect(`/tag/${encodeURIComponent(MERGED_TAGS[tag])}`, 301);
 
 const now = new Date();
 const articles = (await getCollection('articles', ({ data }) => data.published && new Date(data.publishDate) <= now && data.tags?.includes(tag)))
