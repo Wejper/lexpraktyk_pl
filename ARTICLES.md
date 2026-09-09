@@ -146,7 +146,7 @@ problemem lekarzy, dentystów, adwokatów, radców, psychologów i notariuszy �
 dobrej treści w polskim internecie.
 
 ⚠️ **Uwaga na kanibalizację:** sam scenariusz „oddaj pieniądze albo 1★" jest już pokryty przez
-`szantaz-reputacyjny-jak-reagowac`. Ścieżki usuwania opinii pokrywają `usunięcie-opinii-google`,
+`szantaz-reputacyjny-jak-reagowac`. Ścieżki usuwania opinii pokrywają `usuniecie-opinii-google`,
 `rodo-a-opinie-w-internecie` i `opinia-od-pacjenta-ktorego-nie-leczyles`. Poniższe artykuły
 muszą linkować do nich zamiast powtarzać, a same trzymać się swojego kąta.
 

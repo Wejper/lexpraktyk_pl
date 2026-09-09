@@ -27,8 +27,12 @@ const articles = readdirSync(ARTICLES_DIR)
     const fm = raw.split('---')[1] ?? '';
     const body = raw.split('---').slice(2).join('---');
     const m = fm.match(/tags:\s*\[([^\]]*)\]/);
+    const date = fm.match(/publishDate:\s*([0-9-]+)/);
     return {
       id: file.replace(/\.mdx?$/, ''),
+      // Artykuł z przyszłą datą jeszcze się nie renderuje. Link do niego wygląda
+      // w źródle poprawnie i milczkiem oddaje 404 do dnia publikacji.
+      live: /published:\s*true/.test(fm) && (!date || date[1] <= new Date().toISOString().slice(0, 10)),
       tags: m ? m[1].split(',').map((s) => s.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean) : [],
       // linki kontekstowe: tylko te w treści, nie w komponentach
       links: [...body.matchAll(/\]\(\/artykuly\/([^)#\s]+)\)/g)].map((x) => x[1]),
@@ -41,11 +45,16 @@ const ids = new Set(articles.map((a) => a.id));
 // --- linki kontekstowe -------------------------------------------------------
 const withLinks = articles.filter((a) => a.links.length > 0);
 const contextualIn = new Map(articles.map((a) => [a.id, 0]));
+const live = new Set(articles.filter((a) => a.live).map((a) => a.id));
 const broken = [];
+const premature = [];
 for (const a of articles) {
   for (const l of a.links) {
-    if (ids.has(l)) contextualIn.set(l, contextualIn.get(l) + 1);
-    else broken.push(`${a.id} → /artykuly/${l}`);
+    if (!ids.has(l)) broken.push(`${a.id} → /artykuly/${l}`);
+    else {
+      contextualIn.set(l, contextualIn.get(l) + 1);
+      if (a.live && !live.has(l)) premature.push(`${a.id} → ${l}`);
+    }
   }
 }
 
@@ -107,6 +116,7 @@ console.log('\n■ Linki kontekstowe w treści (ręczne)');
 console.log(`  artykuły, które linkują: ${withLinks.length} z ${N}`);
 console.log(`  łącznie linków: ${articles.reduce((s, a) => s + a.links.length, 0)}`);
 if (broken.length) console.log(`  ✗ prowadzą donikąd: ${broken.join(', ')}`);
+if (premature.length) console.log(`  ✗ z opublikowanego do jeszcze nieopublikowanego (404 do dnia publikacji): ${premature.join(', ')}`);
 
 if (watched.length) {
   console.log('\n■ Strony pod obserwacją (cele kupionych linków)');
@@ -119,6 +129,6 @@ if (watched.length) {
   }
 }
 
-const problems = orphans.length + deadEnds.length + broken.length;
+const problems = orphans.length + deadEnds.length + broken.length + premature.length;
 console.log(`\n${problems === 0 ? '✓ Graf spójny.' : `✗ Do naprawy: ${problems} pozycji.`}\n`);
 process.exit(problems === 0 ? 0 : 1);

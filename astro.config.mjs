@@ -11,6 +11,15 @@ export default defineConfig({
   // Konwencja mieszana: zbiory ze slashem (wyjątek robi wrapper w
   // server-start.mjs), dokumenty bez — patrz README, sekcja TODO/URL.
   trailingSlash: 'never',
+
+  redirects: {
+    // Jedyny slug z polskim znakiem. Adres bez slasha — ten, który był w sitemapie —
+    // Astro przekierowywało na formę zakodowaną procentowo I ze slashem, wbrew
+    // konwencji serwisu (dokumenty bez slasha). Google dostawało więc przekierowanie
+    // na URL z sitemapy. Slug jest teraz ASCII, a obie stare formy przekierowują.
+    '/artykuly/usunięcie-opinii-google-jak-to-zrobic': '/artykuly/usuniecie-opinii-google-jak-to-zrobic',
+    '/artykuly/usuni%C4%99cie-opinii-google-jak-to-zrobic': '/artykuly/usuniecie-opinii-google-jak-to-zrobic',
+  },
   integrations: [mdx()],
   vite: {
     plugins: [tailwindcss()]
