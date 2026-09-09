@@ -96,16 +96,22 @@ Robić przed pisaniem czegokolwiek nowego.
 
 ## 1a. Przepisanie istniejących artykułów (nie nowe treści)
 
-- [ ] **Zachowek** → przepisać: tytuł na „komu **się należy**" (3× więcej wyświetleń niż „przysługuje"),
-      bezpośrednia odpowiedź pod H1, 602 → 1200+ słów, FAQ pod długi ogon
-      *(substrat zachowku, zachowek wysokość, zachowek przy dziedziczeniu ustawowym)*
-- [ ] **Eksmisja lokatora** → 734 → 1400+ słów. Najsilniejszy klaster popytu na stronie
-      (~60 wyśw., 15 wariantów frazy), ale poz. 82. Pokryć warianty z zapytań:
-      *bez tytułu prawnego, z mieszkania własnościowego, okres ochronny, wstrzymanie eksmisji,
-      lokal socjalny, mieszkanie komunalne*
-- [ ] **Nieuczciwy kontrahent B2B** → 645 → 1200+ słów. 53 wyśw., poz. 57 — najbliżej przebicia
-      z całej kategorii Biznes. Wchłonąć frazę „windykacja b2b" (17 wyśw., poz. 98)
-- [ ] **Testament** → 588 słów, najkrótszy artykuł na stronie, fraza mocno konkurencyjna → 1200+
+**Zrobione — cały Tier 1a zamknięty 2026-09-09.** Liczby słów podane wcześniej w tej sekcji
+były nieaktualne (zachowek przepisano już w a45c4a3, a backlog nadal pokazywał 602 słowa);
+przy kolejnej rewizji sprawdzać stan w plikach, nie w tej liście.
+
+- [x] **Zachowek** → 1515 sł. Tytuł na „komu **się należy**", bezpośrednia odpowiedź pod H1,
+      substrat zachowku, FAQ pod długi ogon *(a45c4a3)*
+- [x] **Nieuczciwy kontrahent B2B** → 1548 sł. Wchłania „windykacja b2b"; dochodzi biała lista
+      VAT, art. 777 k.p.c., rekompensata 40/70/100 euro. Poprawiona wada merytoryczna:
+      kara umowna za opóźnienie w **zapłacie** jest nieważna (art. 483 § 1 k.c.)
+- [x] **Eksmisja lokatora** → 1349 sł. Warianty z zapytań: bez tytułu prawnego, mieszkanie
+      własnościowe kupione z lokatorem, komunalne, członek rodziny bez umowy, wyłączenie
+      ochrony; nazewnictwo „najem socjalny lokalu" (od 2019)
+- [x] **Testament** → 1385 sł. Zapis zwykły vs windykacyjny (ten drugi tylko notarialnie),
+      taksa notarialna 50/150/200 zł, testamenty szczególne i ich 6 miesięcy, przesłanki
+      nieważności z terminami 3/10 lat
+
 
 ## 1b. Satelity klastra zachowkowego
 
