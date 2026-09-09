@@ -146,6 +146,37 @@ Przy 0,5% konwersji odwiedzin na płatną sprawę × 650 PLN marży + retainery 
 
 ---
 
+## Taksonomia i graf linków
+
+Wdrożone 1:1 z ogrzeje.pl. Tagi i kategorie mają jedno źródło prawdy: `src/utils/categories.ts`.
+
+- `tags` — czy artykuł w ogóle pasuje do kategorii.
+- `core` — tagi, które temat *definiują*; sama rzadkość tagu nie wystarcza do rozstrzygania.
+- `BROAD_TAGS` — tagi przekrojowe (`pozew`, `odszkodowanie`): opisują procedurę, nie temat.
+
+`primaryCategory()` w `src/utils/taxonomy.ts` daje **jedną kategorię na artykuł**, więc
+Nieruchomości, Biznes i Reputacja przestają wyświetlać te same teksty. Liczniki na stronie
+głównej liczą się tą samą regułą co listingi.
+
+`buildLinkGraph()` w `src/utils/linkGraph.ts` liczy blok powiązanych dla całej kolekcji
+naraz. Wcześniej każda strona dobierała trójkę sama: punktacją była liczba wspólnych tagów,
+a remisy rozstrzygała data — przy 4,3 tagu na artykuł remisów są setki, więc faktycznym
+kryterium stawała się świeżość. Teraz podobieństwo waży rzadkość tagu (IDF), a przydział
+jest globalny: z limitem wystąpień, wzajemnością i przebiegiem domykającym wyspy.
+
+Blok powiązanych generuje się sam, ale **link kontekstowy w akapicie jest mocniejszym
+sygnałem i pisze się go ręcznie**. Priorytet: strony będące celem kupionych linków.
+
+```bash
+npm run tax:audit     # tagi nieznane, warianty zapisu, artykuły bez kategorii, rozkład
+npm run links:audit   # wyspy, ślepe zaułki, rozkład stopni, linki do nieopublikowanych
+```
+
+`links:audit` ma na stałe wpisane cztery slugi z kupionymi linkami i pokazuje ich stopień
+wyjściowy osobno — to one mają moc rozprowadzać. Sprawdza też linki do artykułów z przyszłą
+datą: publikowanie z wyprzedzeniem zachęca do linkowania w przód, a taki link oddaje 404 do
+dnia publikacji celu.
+
 ## Styl artykułów
 
 - **Naturalny język** — pisz jak człowiek do człowieka, nie jak ustawa do czytelnika. Żadnych "niniejszym", "w związku z powyższym", "należy wskazać iż."
