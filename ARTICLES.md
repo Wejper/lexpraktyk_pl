@@ -248,6 +248,12 @@ Reszta (kolejność bez zmian, priorytet niski):
       ⚠️ **Tylko dodatkowo + przekierowania** — `/nieruchomosci/` musi dalej działać
       (zasada: nigdy nie zmieniamy URL-i bez redirectu).
 - [ ] Strona usługi Reputacja z formularzem zgłoszenia (Milestone 2)
+- [ ] **Narzędzia jako magnes na linki (slot 10% z miksu treści w README)** — brakujący
+      odpowiednik trackera cen z ogrzeje.pl. Kandydaci, w kolejności siły:
+      - [ ] Kalkulator kosztów zakupu mieszkania — taksa notarialna + PCC 2% + wpisy do KW.
+            Kwota, którą każdy kupujący i tak musi policzyć, a nikt nie podaje jej łącznie
+      - [ ] Kalkulator zachowku — udział ustawowy, stawka ½ lub ⅔, doliczane darowizny
+      - [ ] Zestawienie opłat sądowych i notarialnych, aktualizowane przy zmianie rozporządzeń
 - [ ] Interlinking pass: każdy nowy artykuł linkuje do 2–3 istniejących (i odwrotnie przy okazji edycji)
 - [ ] Poprosić o reindeksację kanonicznych URL-i (zachowek, opinia-od-pacjenta) — stare wersje
       `http://` i bez ukośnika wciąż zbierają wyświetlenia zamiast kanonicznych

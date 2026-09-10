@@ -8,12 +8,23 @@
 
 **Nie jesteśmy kancelarią. Nie jesteśmy forum prawnym.**
 
-Jesteśmy miejscem gdzie osoba lub firma z konkretnym problemem prawnym znajdzie:
-1. Zrozumiały opis sytuacji i opcji
-2. Konkretne kroki do podjęcia
+Jesteśmy miejscem, gdzie osoba stojąca przed decyzją prawną wartą **kilkadziesiąt tysięcy
+złotych** znajdzie:
+1. Zrozumiały opis sytuacji i realnych opcji — z konsekwencjami każdej, nie tylko tej wygodnej
+2. Konkretne kroki, terminy i kwoty: opłaty sądowe, taksy notarialne, podatki, przedawnienia
 3. Dostęp do usługi prawnej za stałą cenę — bez godzinowych stawek, bez zaskoczenia
 
-Cel klienta: rozwiązanie problemu. Nie wiedza o prawie.
+Cel czytelnika: **podjąć decyzję i nie stracić pieniędzy.** Nie wiedza o prawie.
+
+Stawka jest tu równie konkretna jak na ogrzeje.pl, tylko rozłożona na trzy sytuacje:
+zakup lub sprzedaż nieruchomości (największa transakcja w życiu), spór o spadek (zachowek
+od mieszkania to dziesiątki tysięcy) oraz pieniądze i reputacja firmy (niezapłacone faktury,
+opinia, która odcina dopływ klientów).
+
+**Konsekwencja dla doboru tematów:** piszemy o tym, przed czym czytelnik faktycznie stoi
+i ile go to kosztuje — nie o tym, co akurat zebrało wyświetlenia. Wyświetlenia mówią,
+gdzie już jesteśmy widoczni; nie mówią, gdzie jest decyzja warta 40 tysięcy, o której
+nikt jeszcze nie napisał zrozumiale.
 
 ---
 
@@ -80,34 +91,38 @@ Działa dla: usunięcia opinii, wezwania do zapłaty, weryfikacji umowy, zakwest
 
 ## Plan treści
 
-### Nieruchomości (priorytet: wysoki)
-- Zakup mieszkania bez agenta krok po kroku *(napisany)*
-- Spór z deweloperem: jak dochodzić praw za wady mieszkania *(napisany)*
-- Zachowek *(napisany)*, testament *(napisany)*, dział spadku *(napisany)*, odrzucenie spadku *(napisany)*, podatek od spadku *(napisany)*, stwierdzenie nabycia *(napisany)*
-- Umowa przedwstępna — 7 pułapek których nie zauważysz bez prawnika *(do napisania)*
-- Odbiór mieszkania od dewelopera — checklista krok po kroku *(do napisania)*
-- Księga wieczysta — jak czytać i co Cię powinno niepokoić *(do napisania)*
-- Zakup na rynku wtórnym — co sprawdzić zanim zapłacisz zadatek *(do napisania)*
-- Deweloper opóźnia oddanie mieszkania — Twoje prawa i odszkodowanie *(do napisania)*
+Pełny backlog w `ARTICLES.md`. Stan na 2026-09-10: **47 artykułów** (39 opublikowanych
++ 8 z datą przyszłą). Kolejka publikacji sięga 2026-10-19.
 
-### Biznes (priorytet: wysoki)
-- Abuzywne klauzule w umowach B2B *(napisany)*
-- Zakaz konkurencji — kiedy jest ważny *(napisany)*
-- Wypowiedzenie umowy o pracę *(napisany)*
-- Jak zabezpieczyć się przed nieuczciwym kontrahentem B2B *(do napisania)*
-- Umowa z wykonawcą — co wpisać żeby nie zostać z problemem *(do napisania)*
+### Miks treści
 
-### Reputacja (priorytet: najwyższy)
-- Jak usunąć fałszywą opinię z Google *(napisany)*
-- Pomówienie w internecie: co zrobić *(napisany)*
-- Szantaż reputacyjny: "dam 1★ jeśli nie zwrócisz pieniędzy" — jak reagować *(napisany)*
-- Opinia od pacjenta którego nigdy nie leczyłeś — co możesz zrobić *(napisany)*
-- Ochrona wizerunku firmy w internecie — polityka i procedury *(napisany)*
-- Fałszywe opinie na Facebooku i forach — ścieżka prawna *(napisany)*
-- RODO a opinie w internecie — kiedy możesz żądać usunięcia danych autora *(napisany)*
-- Anonimowe pomówienie — czy można ustalić tożsamość i pozwać *(napisany)*
-- Ochrona wizerunku lekarza w internecie — przewodnik prawny *(do napisania)*
+Konwencja wspólna z ogrzeje.pl:
 
+- **60% long-tail informacyjne** („ile wynosi zachowek", „co sprawdzić w księdze wieczystej") —
+  rankują szybko i budują autorytet tematyczny
+- **30% materiały decyzyjne i porównania** („darowizna czy testament", „sąd czy notariusz",
+  „umowa przedwstępna notarialna czy pisemna") — tu czytelnik wybiera wariant, a wybór kosztuje
+  pieniądze. To także treści o najwyższej intencji zakupowej dla usługi za stałą cenę
+- **10% dane i narzędzia** (kalkulatory, zestawienia opłat) — naturalnie przyciągają linki
+
+Trzeci punkt jest na lexpraktyk.pl nierozwinięty i to największa luka wobec ogrzeje.pl,
+gdzie tracker cen paliw jest magnesem na linki. Odpowiednikiem są tu **kwoty, które i tak
+trzeba policzyć przed decyzją**: zachowek, koszty zakupu mieszkania (taksa notarialna + PCC
++ wpisy do KW), opłata sądowa od pozwu. Zob. TODO.
+
+### Zasada doboru tematu
+
+Zanim temat trafi do backlogu, musi odpowiedzieć na trzy pytania:
+
+1. **Przed jaką decyzją stoi czytelnik?** Nie „o czym jest ten przepis", tylko co ta osoba
+   musi za chwilę zrobić lub podpisać.
+2. **Ile go kosztuje pomyłka?** Jeśli odpowiedź brzmi „nic konkretnego", temat jest ciekawostką
+   prawną, nie artykułem dla tego serwisu.
+3. **Czy ktoś już to tłumaczy zrozumiale?** Przepisywanie ustawy własnymi słowami nie jest
+   przewagą — przewagą są kwoty, terminy i konsekwencje wariantów.
+
+Temat, który przechodzi wszystkie trzy, pisze się nawet przy zerowej liczbie wyświetleń
+w Search Console. Temat, który przechodzi tylko trzecie, czeka.
 ---
 
 ## Dlaczego konkurencja jest słaba
