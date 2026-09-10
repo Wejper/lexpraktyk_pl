@@ -273,6 +273,52 @@ Reszta (kolejność bez zmian, priorytet niski):
       ⚠️ **Tylko dodatkowo + przekierowania** — `/nieruchomosci/` musi dalej działać
       (zasada: nigdy nie zmieniamy URL-i bez redirectu).
 - [ ] Strona usługi Reputacja z formularzem zgłoszenia (Milestone 2)
+## Audyt SEO — 2026-09-10
+
+Zmierzone na renderowanych stronach, nie z lektury kodu. W kolejności zwrotu na włożoną pracę.
+
+**Priorytet 1 — tanie i mierzalne:**
+
+- [ ] **Dane strukturalne: zero na całej stronie.** Żadna strona nie ma `application/ld+json`.
+      Każdy artykuł ma sekcję FAQ z 5–7 pytaniami — to gotowy `FAQPage`. Do tego `Article`
+      (autor, daty, okładka), `BreadcrumbList` (breadcrumb już jest wizualnie) i `Organization`.
+      Najtańsza dźwignia w tym serwisie.
+- [ ] **og:image zwraca 404.** Wszystkie strony podają `/og-default.jpg`, którego nie ma
+      w `public/` ani na produkcji. Każde udostępnienie linku idzie bez obrazka. Do tego URL jest
+      względny (OG wymaga absolutnego), a artykuły mają własne okładki, których się nie używa:
+      `[slug].astro` przekazuje `image={article.data.cover}`, a pola `cover:` nie ma **żadny**
+      z 57 artykułów — trzeba przekazać wynik `getCoverImage()`.
+- [ ] **og:type="website" na artykułach** — powinno być `article`, plus
+      `article:published_time`, `article:modified_time` i `article:author` (dziś zero).
+- [ ] **Breadcrumb linkuje do kategorii bez końcowego slasha** (`href="/nieruchomosci"`),
+      czyli każde kliknięcie to zbędne 301. Ten sam błąd naprawiono na stronie 404 (84d9951),
+      ale w `artykuly/[slug].astro` został.
+- [ ] **Tytuły przekraczają limit po doklejeniu sufiksu.** `<title>` = tytuł + „ – lexpraktyk.pl"
+      (16 znaków), więc **38 z 39** renderowanych tytułów ma ponad 60 znaków. Skracanie tytułów
+      w frontmatterze nie pomoże, dopóki sufiks zostaje — rozważyć sufiks tylko na stronach
+      innych niż artykuły.
+- [ ] **16 z 39 opisów przekracza 160 znaków** i jest ucinanych w wynikach (najdłuższy 186).
+
+**Priorytet 2:**
+
+- [ ] **Repo trzyma nieaktualny zestaw okładek.** 36 plików, z czego **10 z ogrzeje.pl**
+      (pompy ciepła, kotły, rekuperacja), a **żaden nie pasuje** do obecnych artykułów;
+      manifest nie mapuje niczego. Produkcja jest w porządku (okładki żyją w sklepie na serwerze),
+      ale lokalnie każda okładka spada na `picsum.photos` — czyli nie da się zrecenzować
+      okładek przed publikacją, a repo niesie cudze binaria.
+- [ ] **Obrazy bez `width`/`height`** — layout shift (CLS). Lazy loading jest (3 z 4 obrazów).
+- [ ] **Google Fonts ładowane blokująco** — jeden `<link rel="stylesheet">` do fonts.googleapis.com
+      przed treścią. Do rozważenia self-hosting albo `display=optional`.
+
+**Priorytet 3 — poza kodem:**
+
+- [ ] Zgłosić do reindeksacji URL-e przepisane w Tier 1a (zachowek, testament, eksmisja, B2B).
+
+**Sprawdzone i w porządku:** `lang="pl"`, kanonikale zgodne z konwencją, `robots` index/follow
+na treści i `noindex` na `/tag/` oraz `/preview/`, robots.txt z sitemapą, sitemap 45 URL-i
+z lastmod na artykułach, jeden `<h1>` na stronę, zero duplikatów tytułów, wszystkie obrazy
+z `alt`, twarde 404 dla nieistniejących artykułów, waga HTML ~33 kB.
+
 - [ ] **Narzędzia jako magnes na linki (slot 10% z miksu treści w README)** — brakujący
       odpowiednik trackera cen z ogrzeje.pl. Kandydaci, w kolejności siły:
       - [ ] Kalkulator kosztów zakupu mieszkania — taksa notarialna + PCC 2% + wpisy do KW.
