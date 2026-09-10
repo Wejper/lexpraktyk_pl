@@ -16,6 +16,9 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const ARTICLES_DIR = 'src/content/articles';
+
+/** Ścieżki zbiorów — kanonicznie ZE slashem. Sync z utils/urls.ts i server-start.mjs. */
+const COLLECTIONS = new Set(['/nieruchomosci', '/biznes', '/reputacja', '/kancelarie', '/wzory']);
 const watched = process.argv.slice(2);
 
 // linkGraph.ts jest TypeScriptem, a audyt ma działać bez buildu — reguła jest krótka,
@@ -37,6 +40,11 @@ const articles = readdirSync(ARTICLES_DIR)
       tags: m ? m[1].split(',').map((s) => s.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean) : [],
       // linki kontekstowe: tylko te w treści, nie w komponentach
       links: [...body.matchAll(/\]\(\/artykuly\/([^)#\s]+)\)/g)].map((x) => x[1]),
+      // Zbiory są kanonicznie ze slashem. Link bez niego działa, ale kosztuje 301 —
+      // i nie widać tego w treści, bo strona się otwiera.
+      collectionLinks: [...body.matchAll(/\]\((\/[a-z0-9-]+)\)/g)]
+        .map((x) => x[1])
+        .filter((p) => COLLECTIONS.has(p)),
     };
   });
 
@@ -120,10 +128,13 @@ console.log(`  wyspy (0 przychodzących): ${orphans.length}${orphans.length ? ' 
 console.log(`  ślepe zaułki (0 wychodzących): ${deadEnds.length}${deadEnds.length ? ' — ' + deadEnds.join(', ') : ''}`);
 console.log(`  ponad limit ${OUT_DEGREE * 2}: ${hogs.length}${hogs.length ? ' — ' + hogs.map(([i, n]) => `${i} (${n})`).join(', ') : ''}`);
 
+const slashless = articles.flatMap((a) => a.collectionLinks.map((p) => `${a.id} → ${p}`));
+
 console.log('\n■ Linki kontekstowe w treści (ręczne)');
 console.log(`  artykuły, które linkują: ${withLinks.length} z ${N}`);
 console.log(`  łącznie linków: ${articles.reduce((s, a) => s + a.links.length, 0)}`);
 if (broken.length) console.log(`  ✗ prowadzą donikąd: ${broken.join(', ')}`);
+if (slashless.length) console.log(`  ✗ do zbioru bez końcowego slasha (301 przy każdym kliknięciu): ${slashless.join(', ')}`);
 // Nie błąd, odkąd remark-defer-unpublished-links zdejmuje taki odnośnik na czas budowania.
 // Zostaje jako informacja, bo autor powinien wiedzieć, które linki jeszcze nie działają.
 if (premature.length) console.log(`  ℹ wyprzedzają publikację celu (odnośnik włączy się sam): ${premature.join(', ')}`);
@@ -139,6 +150,6 @@ if (watched.length) {
   }
 }
 
-const problems = orphans.length + deadEnds.length + broken.length;
+const problems = orphans.length + deadEnds.length + broken.length + slashless.length;
 console.log(`\n${problems === 0 ? '✓ Graf spójny.' : `✗ Do naprawy: ${problems} pozycji.`}\n`);
 process.exit(problems === 0 ? 0 : 1);

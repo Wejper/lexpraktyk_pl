@@ -12,6 +12,8 @@
 export const CATEGORIES = {
   nieruchomosci: {
     label: 'Nieruchomości',
+    /** Tytuł dla wyszukiwarki — etykieta z menu nie niesie żadnej frazy. */
+    seoTitle: 'Prawo nieruchomości: zakup, sprzedaż i spadki',
     num: 'I',
     tagline: 'Największa transakcja w życiu. Konsultacja prawna zamiast 3% prowizji agenta.',
     description: 'Zakup bez agenta, spory z deweloperem, dziedziczenie nieruchomości, księgi wieczyste — zanim podpiszesz, wiedz co podpisujesz.',
@@ -23,6 +25,7 @@ export const CATEGORIES = {
   },
   biznes: {
     label: 'Biznes',
+    seoTitle: 'Prawo dla firm: umowy B2B, windykacja i spółki',
     num: 'II',
     tagline: 'Standardowa umowa B2B pisana jest przez prawnika drugiej strony. Sprawdź, zanim podpiszesz.',
     description: 'Abuzywne klauzule, windykacja B2B, zakaz konkurencji, spory ze wspólnikiem — ochrona prawna gdy Twoje pieniądze są zagrożone.',
@@ -34,6 +37,7 @@ export const CATEGORIES = {
   },
   reputacja: {
     label: 'Reputacja',
+    seoTitle: 'Ochrona reputacji: opinie, pomówienia i wizerunek',
     num: 'III',
     tagline: 'Pomawianie, fałszywe opinie, szantaż 1★. Co — i kiedy — da się z tym zrobić bez awantury.',
     description: 'Fałszywe opinie, szantaż reputacyjny, pomówienie, RODO — chronimy Twoje dobre imię i reputację firmy gdy stawka jest wysoka.',

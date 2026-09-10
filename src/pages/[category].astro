@@ -13,9 +13,9 @@ const isValid = category && category in CATEGORIES;
 
 if (!isValid) Astro.response.status = 404;
 
-const { label, description, num, tagline } = isValid
+const { label, description, num, tagline, seoTitle } = isValid
   ? CATEGORIES[category]
-  : { label: '', description: '', num: '', tagline: '' };
+  : { label: '', description: '', num: '', tagline: '', seoTitle: '' };
 
 const now = new Date();
 const articles = isValid
@@ -28,7 +28,7 @@ const articles = isValid
 ---
 
 {isValid ? (
-  <BaseLayout title={`${label} – lexpraktyk.pl`} description={description}>
+  <BaseLayout title={seoTitle} description={description}>
     <div style="padding: 10px 0 32px; border-bottom: 1px solid var(--ink);">
       <div class="t-mono">
         <a href="/" style="color: var(--ink-soft);">lexpraktyk.pl</a>

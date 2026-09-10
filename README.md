@@ -210,6 +210,15 @@ dnia publikacji celu.
 Spisane po audycie z 2026-09-10. Każda z tych rzeczy była zepsuta i **żadnej nie dało się
 zauważyć, czytając stronę** — dlatego mają tu być regułą, a nie wiedzą plemienną.
 
+**Mierz wszystkie typy stron, nie tylko artykuły.** Pierwszy audyt sprawdzał wyłącznie
+`/artykuly/`. Lista typów do przejścia: home, kategorie, `/wzory/`, katalog kancelarii,
+formularz zgłoszenia, artykuły. W ogrzeje.pl to samo przeoczenie ukryło osiem stron cenowych
+z tytułami po 62–88 znaków.
+
+**Tytuł kategorii to nie etykieta z menu.** `CATEGORIES[].seoTitle` niesie frazę
+(„Prawo nieruchomości: zakup, sprzedaż i spadki"), `label` zostaje krótki dla nawigacji.
+Wcześniej `<title>` brzmiał „Biznes – lexpraktyk.pl" i nie odpowiadał na żadne zapytanie.
+
 **Mierz to, co widzi Google, nie frontmatter.** `<title>` powstaje z pola `title`, więc
 sprawdzanie długości w pliku `.mdx` nie mówi nic, jeżeli layout coś dokleja. Do artykułów
 sufiks `" – lexpraktyk.pl"` był doklejany i zjadał 16 znaków, przez co 38 z 39 tytułów
