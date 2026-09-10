@@ -72,6 +72,22 @@ Klastry przeplatane celowo, żeby nie publikować sześciu tekstów reputacyjnyc
 - [x] 2026-10-14 · Opinia ujawniająca przebieg leczenia: co wolno pacjentowi, a czego Tobie
 - [x] 2026-10-19 · Hejt w komentarzach: odpowiedzialność administratora fanpage'a i forum
 
+## Scheduled — batch 3 (w budowie, co 5 dni od 2026-10-24)
+
+Dobierany według zasady z README (przed jaką decyzją stoi czytelnik / ile kosztuje pomyłka /
+czy ktoś to tłumaczy), a nie według tieryzacji opartej na 269 wyświetleniach. Dlatego trzon
+stanowią tematy transakcyjne z Tier 4, odłożone wcześniej jako „bez wyświetleń" — przy jednym
+kliknięciu w trzy miesiące brak wyświetleń znaczy „nie jesteśmy widoczni", a nie „nikt nie szuka".
+
+- [x] 2026-10-24 · Zadatek a zaliczka — różnica, nieuczciwe praktyki pośredników i deweloperów,
+      odzyskiwanie pieniędzy *(1840 sł.; limit 1% opłaty rezerwacyjnej, rachunek powierniczy,
+      roczne przedawnienie z art. 390 § 3 k.c., OC pośrednika)*
+
+Reszta partii do zatwierdzenia — propozycja: koszty notarialne przy zakupie, sprzedaż przed
+upływem 5 lat i podatek 19%, sprzedaż odziedziczonego mieszkania, kupno mieszkania z lokatorem,
+wady ukryte i rękojmia, umowa przedwstępna notarialna czy pisemna, zniesienie współwłasności,
+art. 299 KSH, sprzedaż mieszkania z kredytem.
+
 **Kolejka wysycha po 2026-10-19** — następną partię przygotować do początku października.
 
 ## Scheduled — batch 1 (10 — every 5 days, Jul 16 – Aug 30, 2026)
