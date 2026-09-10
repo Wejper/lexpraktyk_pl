@@ -124,7 +124,9 @@ console.log('\n■ Linki kontekstowe w treści (ręczne)');
 console.log(`  artykuły, które linkują: ${withLinks.length} z ${N}`);
 console.log(`  łącznie linków: ${articles.reduce((s, a) => s + a.links.length, 0)}`);
 if (broken.length) console.log(`  ✗ prowadzą donikąd: ${broken.join(', ')}`);
-if (premature.length) console.log(`  ✗ z opublikowanego do jeszcze nieopublikowanego (404 do dnia publikacji): ${premature.join(', ')}`);
+// Nie błąd, odkąd remark-defer-unpublished-links zdejmuje taki odnośnik na czas budowania.
+// Zostaje jako informacja, bo autor powinien wiedzieć, które linki jeszcze nie działają.
+if (premature.length) console.log(`  ℹ wyprzedzają publikację celu (odnośnik włączy się sam): ${premature.join(', ')}`);
 
 if (watched.length) {
   console.log('\n■ Strony pod obserwacją (cele kupionych linków)');
@@ -137,6 +139,6 @@ if (watched.length) {
   }
 }
 
-const problems = orphans.length + deadEnds.length + broken.length + premature.length;
+const problems = orphans.length + deadEnds.length + broken.length;
 console.log(`\n${problems === 0 ? '✓ Graf spójny.' : `✗ Do naprawy: ${problems} pozycji.`}\n`);
 process.exit(problems === 0 ? 0 : 1);

@@ -72,23 +72,32 @@ Klastry przeplatane celowo, żeby nie publikować sześciu tekstów reputacyjnyc
 - [x] 2026-10-14 · Opinia ujawniająca przebieg leczenia: co wolno pacjentowi, a czego Tobie
 - [x] 2026-10-19 · Hejt w komentarzach: odpowiedzialność administratora fanpage'a i forum
 
-## Scheduled — batch 3 (w budowie, co 5 dni od 2026-10-24)
+## Scheduled — batch 3 (10 — co 5 dni, 24.10 – 08.12.2026)
 
-Dobierany według zasady z README (przed jaką decyzją stoi czytelnik / ile kosztuje pomyłka /
-czy ktoś to tłumaczy), a nie według tieryzacji opartej na 269 wyświetleniach. Dlatego trzon
+Pierwsza partia dobrana według zasady z README (przed jaką decyzją stoi czytelnik / ile kosztuje
+pomyłka / czy ktoś to tłumaczy), a nie według tieryzacji opartej na 269 wyświetleniach. Trzon
 stanowią tematy transakcyjne z Tier 4, odłożone wcześniej jako „bez wyświetleń" — przy jednym
 kliknięciu w trzy miesiące brak wyświetleń znaczy „nie jesteśmy widoczni", a nie „nikt nie szuka".
 
-- [x] 2026-10-24 · Zadatek a zaliczka — różnica, nieuczciwe praktyki pośredników i deweloperów,
-      odzyskiwanie pieniędzy *(1840 sł.; limit 1% opłaty rezerwacyjnej, rachunek powierniczy,
-      roczne przedawnienie z art. 390 § 3 k.c., OC pośrednika)*
+- [x] 2026-10-24 · Zadatek a zaliczka — nieuczciwe praktyki pośredników i deweloperów *(1840 sł.)*
+- [x] 2026-10-29 · Sprzedający zabrał zadatek — opóźnienie, wypadek losowy, zajęcie konta, groźby *(1747 sł.)*
+- [x] 2026-11-03 · Koszty notarialne przy zakupie mieszkania — taksa, PCC, wpisy *(1138 sł.)*
+- [x] 2026-11-08 · Sprzedaż przed upływem 5 lat — podatek 19% i ulga mieszkaniowa *(905 sł.)*
+- [x] 2026-11-13 · Sprzedaż odziedziczonego mieszkania — formalności, podatki, zgody *(969 sł.)*
+- [x] 2026-11-18 · Kupno mieszkania z lokatorem — jak wycenić ryzyko *(1072 sł.)*
+- [x] 2026-11-23 · Wady ukryte po zakupie — rękojmia na rynku wtórnym *(1009 sł.)*
+- [x] 2026-11-28 · Zniesienie współwłasności przed sprzedażą *(988 sł.)*
+- [x] 2026-12-03 · Sprzedaż mieszkania z kredytem hipotecznym *(968 sł.)*
+- [x] 2026-12-08 · Odpowiedzialność członka zarządu za długi spółki, art. 299 KSH *(1071 sł.)*
 
-Reszta partii do zatwierdzenia — propozycja: koszty notarialne przy zakupie, sprzedaż przed
-upływem 5 lat i podatek 19%, sprzedaż odziedziczonego mieszkania, kupno mieszkania z lokatorem,
-wady ukryte i rękojmia, umowa przedwstępna notarialna czy pisemna, zniesienie współwłasności,
-art. 299 KSH, sprzedaż mieszkania z kredytem.
+**Kolejka sięga 2026-12-08** — następną partię przygotować na przełom listopada i grudnia.
+Wtedy będzie już nowy eksport z Search Console (ok. 2026-11-20), więc batch 4 można oprzeć
+na danych, a nie na samej zasadzie doboru.
 
-**Kolejka wysycha po 2026-10-19** — następną partię przygotować do początku października.
+**Temat wykreślony:** „Umowa przedwstępna notarialna czy pisemna" — kanibalizowałby
+`umowa-przedwstepna-pulapki`, który ma na to całą sekcję. W jego miejsce weszła sprzedaż
+mieszkania z kredytem.
+
 
 ## Scheduled — batch 1 (10 — every 5 days, Jul 16 – Aug 30, 2026)
 
@@ -211,7 +220,7 @@ Pisać po Tier 1–2.
 - [ ] Umowa NDA — co musi zawierać, żeby nie była tylko ozdobą
 - [ ] Rękojmia w B2B — czy i jak można ją wyłączyć
 - [ ] Wypowiedzenie umowy B2B "z dnia na dzień" — ważność krótkich terminów
-- [ ] Odpowiedzialność członka zarządu za długi spółki (art. 299 KSH)
+- [x] Odpowiedzialność członka zarządu za długi spółki *(batch 3)* (art. 299 KSH)
 - [ ] Spółka 50/50 — paraliż decyzyjny i jak z niego wyjść
 - [ ] Kontrola ZUS lub US w firmie — prawa przedsiębiorcy
 - [ ] Upadłość konsumencka — dla kogo, co daje i co zabiera
@@ -227,26 +236,26 @@ Zero wyświetleń w 3 miesiącach na którykolwiek z tych tematów. Nie znaczy, 
 będzie wyczerpany.
 
 Najbliżej istniejącego popytu (`umowa-przedwstepna` już rankuje na poz. 7,0 — te trzy podpiąć pod nią):
-- [ ] Zadatek a zaliczka — różnica, którą poznaje się po fakcie
-- [ ] Umowa przedwstępna u notariusza czy zwykła pisemna — różnica w skutkach
-- [ ] Koszty notarialne przy zakupie mieszkania — taksa, PCC, wpisy
+- [x] Zadatek a zaliczka *(batch 3)* — różnica, którą poznaje się po fakcie
+- [x] Umowa przedwstępna u notariusza czy zwykła pisemna *(batch 3)* — różnica w skutkach
+- [x] Koszty notarialne przy zakupie mieszkania *(batch 3)* — taksa, PCC, wpisy
 
 Powiązane z dziedziczeniem (naturalne linkowanie do klastra spadkowego):
-- [ ] Sprzedaż odziedziczonego mieszkania — formalności, podatki, zgody spadkobierców
+- [x] Sprzedaż odziedziczonego mieszkania *(batch 3)* — formalności, podatki, zgody spadkobierców
 - [ ] Umowa dożywocia — jak działa i czym różni się od darowizny
-- [ ] Zniesienie współwłasności przed sprzedażą — sposoby, koszty, podatki
+- [x] Zniesienie współwłasności przed sprzedażą *(batch 3)* — sposoby, koszty, podatki
 
 Reszta (kolejność bez zmian, priorytet niski):
 - [ ] Umowa rezerwacyjna z deweloperem — co naprawdę podpisujesz
 - [ ] Rachunek powierniczy dewelopera — czy Twoje pieniądze są bezpieczne
 - [ ] Kupno działki budowlanej — MPZP, warunki zabudowy, dostęp do drogi i media
 - [ ] Kupno mieszkania na licytacji komorniczej — okazja czy pułapka
-- [ ] Kupno mieszkania z lokatorem — na co uważać i jak wycenić ryzyko
-- [ ] Wady ukryte po zakupie — rękojmia na rynku wtórnym krok po kroku
+- [x] Kupno mieszkania z lokatorem *(batch 3)* — na co uważać i jak wycenić ryzyko
+- [x] Wady ukryte po zakupie *(batch 3)* — rękojmia na rynku wtórnym krok po kroku
 - [ ] Cesja umowy deweloperskiej — jak bezpiecznie kupić (i sprzedać) cesję
-- [ ] Sprzedaż mieszkania przed upływem 5 lat — podatek 19% i jak go legalnie uniknąć
+- [x] Sprzedaż mieszkania przed upływem 5 lat *(batch 3)* — podatek 19% i jak go legalnie uniknąć
 - [ ] Ulga mieszkaniowa w PIT — "własne cele mieszkaniowe" w praktyce urzędów
-- [ ] Sprzedaż mieszkania z kredytem hipotecznym — promesa, spłata przez notariusza
+- [x] Sprzedaż mieszkania z kredytem hipotecznym *(batch 3)* — promesa, spłata przez notariusza
 - [ ] Pełnomocnictwo do sprzedaży nieruchomości — zakres, forma i ryzyka nadużycia
 - [ ] Umowa z pośrednikiem — klauzula wyłączności i prowizja po wygaśnięciu
 - [ ] Samowola budowlana a sprzedaż domu — legalizacja przed transakcją
