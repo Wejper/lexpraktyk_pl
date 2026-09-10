@@ -79,16 +79,16 @@ pomyłka / czy ktoś to tłumaczy), a nie według tieryzacji opartej na 269 wyś
 stanowią tematy transakcyjne z Tier 4, odłożone wcześniej jako „bez wyświetleń" — przy jednym
 kliknięciu w trzy miesiące brak wyświetleń znaczy „nie jesteśmy widoczni", a nie „nikt nie szuka".
 
-- [x] 2026-10-24 · Zadatek a zaliczka — nieuczciwe praktyki pośredników i deweloperów *(1840 sł.)*
-- [x] 2026-10-29 · Sprzedający zabrał zadatek — opóźnienie, wypadek losowy, zajęcie konta, groźby *(1747 sł.)*
+- [x] 2026-10-24 · Zadatek a zaliczka — różnica i jak nie stracić pieniędzy *(1840 sł.)*
+- [x] 2026-10-29 · Zwrot zadatku — kiedy sprzedający musi oddać pieniądze *(1747 sł.)*
 - [x] 2026-11-03 · Koszty notarialne przy zakupie mieszkania — taksa, PCC, wpisy *(1138 sł.)*
-- [x] 2026-11-08 · Sprzedaż przed upływem 5 lat — podatek 19% i ulga mieszkaniowa *(905 sł.)*
+- [x] 2026-11-08 · Podatek od sprzedaży mieszkania przed upływem 5 lat *(905 sł.)*
 - [x] 2026-11-13 · Sprzedaż odziedziczonego mieszkania — formalności, podatki, zgody *(969 sł.)*
 - [x] 2026-11-18 · Kupno mieszkania z lokatorem — jak wycenić ryzyko *(1072 sł.)*
-- [x] 2026-11-23 · Wady ukryte po zakupie — rękojmia na rynku wtórnym *(1009 sł.)*
-- [x] 2026-11-28 · Zniesienie współwłasności przed sprzedażą *(988 sł.)*
+- [x] 2026-11-23 · Ukryte wady mieszkania po zakupie — czego możesz żądać *(1009 sł.)*
+- [x] 2026-11-28 · Zniesienie współwłasności mieszkania — jak wyjść i ile to kosztuje *(988 sł.)*
 - [x] 2026-12-03 · Sprzedaż mieszkania z kredytem hipotecznym *(968 sł.)*
-- [x] 2026-12-08 · Odpowiedzialność członka zarządu za długi spółki, art. 299 KSH *(1071 sł.)*
+- [x] 2026-12-08 · Odpowiedzialność członka zarządu za długi spółki z o.o. *(1071 sł.)*
 
 **Kolejka sięga 2026-12-08** — następną partię przygotować na przełom listopada i grudnia.
 Wtedy będzie już nowy eksport z Search Console (ok. 2026-11-20), więc batch 4 można oprzeć

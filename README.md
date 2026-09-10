@@ -223,6 +223,20 @@ dnia publikacji celu.
 - **Bezpośrednia odpowiedź na początku** — jeśli tytuł jest pytaniem („komu należy się zachowek"), odpowiedź musi paść w pierwszych 2–3 zdaniach pod H1, przed kontekstem i definicjami. Pytania to szansa na featured snippet, ale tylko gdy Google znajdzie zwięzłą odpowiedź od razu.
 
 - **Tytuł w takiej formie, jakiej ludzie faktycznie szukają** — sprawdź warianty frazy w Search Console przed napisaniem tytułu. Przykład: „komu **należy się** zachowek" ma ~3× więcej wyświetleń niż „komu **przysługuje** zachowek", a artykuł był zoptymalizowany pod tę rzadszą formę.
+- **Antywzorce tytułów** (sprawdzane przy każdej partii — batch 3 miał ich sześć na dziesięć):
+  - **Sygnatura przepisu w tytule.** „Odpowiedzialność członka zarządu: art. 299 KSH w praktyce" —
+    tej frazy nie wpisuje nikt poza prawnikiem. Przepis należy do treści i do „Podstawy prawnej",
+    nie do tytułu.
+  - **Ogon z listy rzeczowników.** „…: sposoby, koszty i terminy" nie obiecuje niczego konkretnego.
+    Po dwukropku ma stać obietnica praktyczna: *ile wynosi*, *jak uniknąć*, *czego możesz żądać*,
+    *kiedy płacisz swoim majątkiem*.
+  - **Wypełniacze.** „krok po kroku", „w praktyce", „kompendium", „wszystko, co musisz wiedzieć" —
+    zajmują miejsce, którego brakuje na frazę.
+  - **Zła kolejność słów kluczowych.** Wpisuje się „podatek od sprzedaży mieszkania przed upływem
+    5 lat", a nie „sprzedaż mieszkania przed upływem 5 lat: podatek". Fraza idzie na początek.
+  - **Trzy człony.** Tytuł z dwoma dwukropkami albo trzema myślnikami zwykle znaczy, że artykuł
+    obejmuje dwa tematy — i lepiej rozdzielić go na dwa teksty.
+
 - **Podstawy prawne — obowiązkowo, ale niewidocznie:** każde twierdzenie prawne musi mieć oparcie w realnej polskiej ustawie z Dziennika Ustaw RP. Cytuj przepis naturalnie w tekście ("art. 17 RODO daje Ci 30 dni na odpowiedź platformy") lub zbierz wszystkie podstawy w sekcji na końcu artykułu. Nie pisz o prawie bez przepisu — nie piszemy poezji, piszemy praktyczny poradnik prawny. Przykłady: Kodeks cywilny (Dz.U. 1964 nr 16 poz. 93), Kodeks karny (Dz.U. 1997 nr 88 poz. 553), RODO (Rozporządzenie UE 2016/679), ustawa o ochronie danych osobowych (Dz.U. 2018 poz. 1000).
 
 ---
