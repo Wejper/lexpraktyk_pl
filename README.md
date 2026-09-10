@@ -223,6 +223,11 @@ dnia publikacji celu.
 - **Bezpośrednia odpowiedź na początku** — jeśli tytuł jest pytaniem („komu należy się zachowek"), odpowiedź musi paść w pierwszych 2–3 zdaniach pod H1, przed kontekstem i definicjami. Pytania to szansa na featured snippet, ale tylko gdy Google znajdzie zwięzłą odpowiedź od razu.
 
 - **Tytuł w takiej formie, jakiej ludzie faktycznie szukają** — sprawdź warianty frazy w Search Console przed napisaniem tytułu. Przykład: „komu **należy się** zachowek" ma ~3× więcej wyświetleń niż „komu **przysługuje** zachowek", a artykuł był zoptymalizowany pod tę rzadszą formę.
+- **Długość tytułu: do ~60 znaków.** Google ucina dłuższe, a ucina od końca — czyli traci się
+  dokładnie tę część po dwukropku, która sprzedaje kliknięcie. Punkt odniesienia z własnej strony:
+  artykuły, które realnie rankują (`opinia-od-pacjenta` poz. 7,7, `ochrona-wizerunku-lekarza`
+  poz. 15,2), mają 43–64 znaki. Pierwsza wersja batcha 3 miała 63–86 i wymagała skrócenia.
+
 - **Antywzorce tytułów** (sprawdzane przy każdej partii — batch 3 miał ich sześć na dziesięć):
   - **Sygnatura przepisu w tytule.** „Odpowiedzialność członka zarządu: art. 299 KSH w praktyce" —
     tej frazy nie wpisuje nikt poza prawnikiem. Przepis należy do treści i do „Podstawy prawnej",
