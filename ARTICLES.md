@@ -228,6 +228,29 @@ Pisać po Tier 1–2.
 - [ ] Przekształcenie JDG w sp. z o.o. — kiedy warto i ile kosztuje
 - [ ] Praca zdalna — obowiązki pracodawcy i ekwiwalenty
 
+## 3a. Klaster: klient zagraniczny (freelancer i mała firma)
+
+Nowy klaster, dopisany 2026-09-11. Wzór, który już raz zadziałał na tym serwisie: temat opisany
+porządnie po angielsku, po polsku szczątkowo, a odbiorca zarabia w euro i jest przyzwyczajony
+płacić za rozwiązanie. Zasila najcieńszą kategorię serwisu — Biznes ma 8 z 39 opublikowanych
+tekstów przy udokumentowanym popycie na windykację i nieuczciwego kontrahenta.
+
+**Zacząć od pierwszego.** Jest w całości prawny, więc nie wymaga rozstrzygania zakresu kategorii,
+jest gaszeniem pożaru (cisza albo pismo od kontrahenta już nastąpiły) i podpina się wprost pod
+klaster windykacyjny z Tier 1. Pozostałe cztery to tryb zapoznania — zbudują ruch wolniej.
+
+- [ ] Zagraniczny kontrahent nie zapłacił faktury — co możesz zrobić *(prawo właściwe, jurysdykcja, europejski nakaz zapłaty, koszt egzekucji za granicą)*
+- [ ] Umowa z zagranicznym klientem — co wpisać, żeby dało się jej dochodzić *(para do „Umowa z wykonawcą: co wpisać")*
+- [ ] Faktura dla klienta z UE bez VAT — kiedy odwrotne obciążenie, a kiedy nie *(rejestracja VAT-UE przed pierwszą sprzedażą)*
+- [ ] Praca zdalna z Polski dla zagranicznej firmy — gdzie płacisz podatek *(rezydencja, 183 dni, umowy o unikaniu podwójnego opodatkowania)*
+- [ ] Faktura dla klienta z USA — podatek u źródła i formularz W-8BEN
+
+> **Decyzja do podjęcia przed trzecim tematem.** Rezydencja podatkowa, VAT-UE i podatek u źródła
+> to podatki, nie prawo cywilne — czytelnik ten sam, ale zakres serwisu szerszy. Trzeba świadomie
+> dopuścić te tagi w `src/utils/categories.ts`, inaczej teksty będą wpadać w remisy przy
+> `primaryCategory()`. To plik sterujący kolejnością menu, więc obowiązuje pełna weryfikacja
+> z README (§ Weryfikacja zmian).
+
 # TIER 4 — Nieruchomości transakcyjne (odłożone)
 
 Zero wyświetleń w 3 miesiącach na którykolwiek z tych tematów. Nie znaczy, że złe — znaczy,
