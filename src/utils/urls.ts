@@ -28,3 +28,14 @@ export function canonicalPath(pathname: string): string {
   if ((COLLECTION_PATHS as readonly string[]).includes(stripped)) return `${stripped}/`;
   return stripped;
 }
+
+/** Link do artykułu. */
+export const articleUrl = (id: string) => `/artykuly/${id}`;
+
+/** Link do strony tagu. */
+export const tagUrl = (tag: string) => `/tag/${encodeURIComponent(tag)}`;
+
+/** Link do kategorii — ZAWSZE ze slashem, bo kategoria jest zbiorem. Używać wszędzie
+ *  zamiast ręcznego `/${slug}`: breadcrumb w artykule linkował bez slasha, więc każde
+ *  kliknięcie kosztowało zbędne przekierowanie 301. */
+export const categoryUrl = (slug: string) => `/${slug}/`;

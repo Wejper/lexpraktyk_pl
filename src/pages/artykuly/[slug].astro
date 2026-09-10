@@ -1,9 +1,12 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { categoryUrl } from '../../utils/urls';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCoverImage } from '../../utils/cover';
 import RelatedArticles from '../../components/RelatedArticles.astro';
 import { CATEGORIES } from '../../utils/categories';
+import { primaryCategory, tagWeights } from '../../utils/taxonomy';
+import { articleSchema, breadcrumbSchema, faqFromBody, faqSchema } from '../../utils/schema';
 
 export async function getStaticPaths() {
   const now = new Date();
@@ -19,20 +22,48 @@ const { Content, headings } = await render(article);
 const sections = headings.filter(h => h.depth === 2);
 const coverImage = await getCoverImage(article.data.cover, article.data.tags, article.data.coverQuery, article.id);
 
-// Find category for breadcrumb
-const articleCategory = Object.entries(CATEGORIES).find(([, { tags: catTags }]) =>
-  article.data.tags?.some(t => (catTags as readonly string[]).includes(t))
-);
-const [catSlug, catData] = articleCategory ?? [null, null];
+// Breadcrumb pokazuje kategorię główną — tę samą, w której listingu artykuł faktycznie
+// jest. Wcześniej brał pierwszą pasującą, więc przy artykule z tagami z dwóch kategorii
+// okruszek prowadził gdzie indziej niż listing.
+const catSlug = primaryCategory(article, tagWeights(allArticles));
+const catData = catSlug ? CATEGORIES[catSlug] : null;
 
 const authorName = article.data.author ?? 'Redakcja lexpraktyk.pl';
 const authorInitials = authorName.split(' ').slice(0,2).map((w: string) => w[0]).join('').toUpperCase();
+const url = `/artykuly/${article.id}`;
+
+// Do og:image i do schematu trafia wyłącznie okładka z naszego sklepu. Gdy jej brakuje,
+// getCoverImage oddaje zastępczy obrazek z picsum.photos — dobry na podgląd w dev, ale nie
+// do wysyłania jako oficjalna miniatura artykułu.
+const ownCover = coverImage.startsWith('/') ? coverImage : undefined;
+const faq = faqFromBody(article.body ?? '');
+
+const schemas = [
+  articleSchema({
+    title: article.data.title,
+    description: article.data.description,
+    url,
+    image: ownCover,
+    author: authorName,
+    publishDate: article.data.publishDate,
+  }),
+  breadcrumbSchema([
+    { name: 'lexpraktyk.pl', url: '/' },
+    ...(catSlug && catData ? [{ name: catData.label, url: categoryUrl(catSlug) }] : []),
+    { name: article.data.title, url },
+  ]),
+  ...(faq.length ? [faqSchema(faq)] : []),
+];
 ---
 
 <BaseLayout
-  title={`${article.data.title} – lexpraktyk.pl`}
+  title={article.data.title}
   description={article.data.description}
-  image={article.data.cover}
+  image={ownCover}
+  type="article"
+  publishedTime={article.data.publishDate.toISOString()}
+  author={authorName}
+  schemas={schemas}
 >
   <!-- Breadcrumb -->
   <nav class="t-mono" style="margin-bottom:24px; color:var(--ink-faint);">
@@ -40,7 +71,7 @@ const authorInitials = authorName.split(' ').slice(0,2).map((w: string) => w[0])
     {catSlug && (
       <>
         <span style="margin:0 6px;">·</span>
-        <a href={`/${catSlug}`} style="color:var(--ink-soft);">{catData?.label}</a>
+        <a href={categoryUrl(catSlug)} style="color:var(--ink-soft);">{catData?.label}</a>
       </>
     )}
     <span style="margin:0 6px;">·</span>
@@ -80,6 +111,9 @@ const authorInitials = authorName.split(' ').slice(0,2).map((w: string) => w[0])
     <img
       src={coverImage}
       alt={article.data.title}
+      width="800"
+      height="450"
+      fetchpriority="high"
       style="width:100%; height:420px; object-fit:cover; border-radius:var(--r-md); display:block;"
     />
     <figcaption class="t-mono" style="margin-top:6px; color:var(--ink-faint);">fot. ilustracyjna · {article.data.tags?.[0] ?? 'prawo'}</figcaption>

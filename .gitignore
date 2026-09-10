@@ -15,3 +15,9 @@ node_modules/
 
 # design prototype leftovers — kept on disk for archiving, not tracked
 design_handoff_lexpraktyk/
+
+# Okładki artykułów. Kanoniczny zbiór żyje w sklepie na serwerze
+# (public_html/images/covers) — deploy pobiera go przed buildem i odsyła po nim.
+# Trzymanie kopii w repo powodowało, że zestaw się starzał: było w nim 36 plików,
+# z czego 10 z ogrzeje.pl, i żaden nie pasował do obecnych artykułów.
+public/images/covers/
