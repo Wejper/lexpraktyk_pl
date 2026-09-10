@@ -91,8 +91,8 @@ Działa dla: usunięcia opinii, wezwania do zapłaty, weryfikacji umowy, zakwest
 
 ## Plan treści
 
-Pełny backlog w `ARTICLES.md`. Stan na 2026-09-10: **47 artykułów** (39 opublikowanych
-+ 8 z datą przyszłą). Kolejka publikacji sięga 2026-10-19.
+Pełny backlog w `ARTICLES.md`. Stan na 2026-09-10: **57 artykułów** (39 opublikowanych
++ 18 z datą przyszłą). Kolejka publikacji sięga 2026-12-08.
 
 ### Miks treści
 
@@ -355,7 +355,7 @@ przeróbce artykułu trzeba to zrobić ręcznie.
 
 | # | Cel | Status |
 |---|-----|--------|
-| 1 | 30 artykułów — pełne pokrycie trzech kategorii | 🟡 19/30 — 8 Nieruchomości, 3 Biznes, 8 Reputacja |
+| 1 | 30 artykułów — pełne pokrycie trzech kategorii | ✅ 39 opublikowanych — 17 Nieruchomości, 8 Biznes, 14 Reputacja |
 | 2 | Disclaimer "To jest poradnik, nie porada prawna" na górze każdego artykułu | 🟡 Jest na dole — przenieść na górę |
 | 3 | Strona usługi Reputacja z formularzem zgłoszenia | ⬜ do zrobienia |
 | 4 | Pierwszy partner prawnik potwierdzony | ⬜ do zrobienia |
