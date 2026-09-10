@@ -50,9 +50,13 @@ const popularTags = ['zachowek','testament','notariusz','księga wieczysta','wyp
   <div class="masthead-bar" style="display:flex; align-items:baseline; justify-content:space-between; padding: 8px 0 24px; border-bottom: 1px solid var(--rule);">
     <div>
       <div class="h-eyebrow">{now.toLocaleDateString('pl-PL', { month: 'long', year: 'numeric' })}</div>
-      <div class="t-script" style="font-size:13.5px; margin-top:4px;">
+      <!-- H1 strony głównej. Wcześniej home była jedynym typem strony bez H1: hero to
+           tytuł wyróżnionego artykułu i musi zostać H2, więc nagłówek strony niesie
+           zdanie z masthead. Rozmiar i marginesy wypisane wprost, bo global.css nie
+           resetuje h1 — bez tego przeglądarka doklei swoje 2em i rozjedzie masthead. -->
+      <h1 class="t-script" style="font-size:13.5px; font-weight:inherit; margin:4px 0 0;">
         Praktyczny przewodnik prawny dla zwykłych ludzi — bez żargonu, krok po kroku.
-      </div>
+      </h1>
     </div>
     <div class="t-mono" style="text-align:right;">
       <div>{articleCount} artykułów</div>
