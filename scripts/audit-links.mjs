@@ -33,6 +33,7 @@ const articles = readdirSync(ARTICLES_DIR)
       // Artykuł z przyszłą datą jeszcze się nie renderuje. Link do niego wygląda
       // w źródle poprawnie i milczkiem oddaje 404 do dnia publikacji.
       live: /published:\s*true/.test(fm) && (!date || date[1] <= new Date().toISOString().slice(0, 10)),
+      date: date ? date[1] : null,
       tags: m ? m[1].split(',').map((s) => s.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean) : [],
       // linki kontekstowe: tylko te w treści, nie w komponentach
       links: [...body.matchAll(/\]\(\/artykuly\/([^)#\s]+)\)/g)].map((x) => x[1]),
@@ -53,7 +54,14 @@ for (const a of articles) {
     if (!ids.has(l)) broken.push(`${a.id} → /artykuly/${l}`);
     else {
       contextualIn.set(l, contextualIn.get(l) + 1);
-      if (a.live && !live.has(l)) premature.push(`${a.id} → ${l}`);
+      // Link wyprzedzający cel: liczy się kolejność dat publikacji, nie dzisiejszy stan.
+      // Dwa artykuły zaplanowane na przyszłość też potrafią wskazywać w 404 — ten z wcześniejszą
+      // datą przez kilka dni prowadzi do tekstu, którego jeszcze nie ma.
+      // Problem istnieje tylko dopóki cel nie jest opublikowany: albo źródło jest już żywe,
+      // albo oba czekają w kolejce, a źródło wychodzi wcześniej i przez kilka dni prowadzi w 404.
+      const target = articles.find((x) => x.id === l);
+      const gap = !live.has(l) && (a.live || (a.date && target.date && a.date < target.date));
+      if (gap) premature.push(`${a.id} (${a.date}) → ${l} (${target.date})`);
     }
   }
 }

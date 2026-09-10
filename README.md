@@ -161,6 +161,19 @@ Przy 0,5% konwersji odwiedzin na płatną sprawę × 650 PLN marży + retainery 
 
 ---
 
+## Linkowanie w przód a publikacja z datą
+
+Pisząc partię artykułów naraz, autor naturalnie odsyła do sąsiedniego tekstu — zna jego treść,
+choć ten wychodzi za miesiąc. Taki link jest poprawny w źródle i **milczkiem oddaje 404 aż do
+dnia publikacji celu**. Wdrożone 1:1 z ogrzeje.pl, gdzie takich linków było jednocześnie jedenaście.
+
+`src/plugins/remark-defer-unpublished-links.mjs` zdejmuje taki link na czas budowania —
+zdanie zostaje nietknięte, znika sam odnośnik. Codzienny przebudow, ten sam, który publikuje
+zaplanowane artykuły, włącza go z powrotem w dniu, w którym cel staje się dostępny.
+
+**Linkuj więc w przód swobodnie.** `npm run links:audit` nadal takie pary raportuje, bo autor
+powinien o nich wiedzieć — plugin chroni czytelnika, nie ukrywa problemu.
+
 ## Taksonomia i graf linków
 
 Wdrożone 1:1 z ogrzeje.pl. Tagi i kategorie mają jedno źródło prawdy: `src/utils/categories.ts`.

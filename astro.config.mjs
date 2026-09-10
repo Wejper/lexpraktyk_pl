@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
+import { remarkDeferUnpublishedLinks } from './src/plugins/remark-defer-unpublished-links.mjs';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import node from '@astrojs/node';
@@ -20,6 +21,12 @@ export default defineConfig({
     '/artykuly/usunięcie-opinii-google-jak-to-zrobic': '/artykuly/usuniecie-opinii-google-jak-to-zrobic',
     '/artykuly/usuni%C4%99cie-opinii-google-jak-to-zrobic': '/artykuly/usuniecie-opinii-google-jak-to-zrobic',
   },
+  // Linki do jeszcze nieopublikowanych artykułów znikają na czas budowania — patrz plugin.
+  // mdx() dziedziczy konfigurację markdown, więc wystarczy jedno miejsce.
+  markdown: {
+    remarkPlugins: [remarkDeferUnpublishedLinks],
+  },
+
   integrations: [mdx()],
   vite: {
     plugins: [tailwindcss()]
