@@ -205,6 +205,36 @@ wyjściowy osobno — to one mają moc rozprowadzać. Sprawdza też linki do art
 datą: publikowanie z wyprzedzeniem zachęca do linkowania w przód, a taki link oddaje 404 do
 dnia publikacji celu.
 
+## Weryfikacja zmian — co obejrzeć, zanim pójdzie na produkcję
+
+Serwis zaczyna łapać ruch, więc regresja przestaje być kosztem zerowym. Poniższe pliki
+**sterują czymś, czego nie widać w kodzie, który się zmienia** — dlatego po ich dotknięciu
+weryfikacja musi objąć wyrenderowaną stronę, a nie tylko kody odpowiedzi i testy jednostkowe.
+
+| Plik | Steruje |
+|---|---|
+| `src/utils/categories.ts` | **kolejnością menu** (nawigacja iteruje po kluczach `CATEGORIES`, potem Wzory pism i Kancelarie), siatką kategorii na stronie głównej, rozstrzyganiem remisów w `primaryCategory()`, tytułami i opisami kategorii |
+| `src/utils/urls.ts` | kanonikalami, przekierowaniami 301, listą zbiorów (sync z `server-start.mjs`) |
+| `src/layouts/BaseLayout.astro` | meta, Open Graph i danymi strukturalnymi **wszystkich** stron naraz |
+| `src/utils/linkGraph.ts`, `taxonomy.ts` | tym, co widać w blokach powiązanych i listingach kategorii |
+
+**Minimum przy zmianie w którymkolwiek z nich:**
+
+1. `npm run build` i uruchomienie `dist/` **z wrapperem obsługującym końcowe slashe** —
+   bez niego zbiory zwracają 301 i łatwo wziąć to za usterkę produkcji.
+2. **Obejrzeć kolejność w nawigacji.** Nie „czy strony zwracają 200", tylko czy menu wygląda
+   tak samo jak wcześniej. Kolejność jest decyzją biznesową, nie kosmetyką — dziś:
+   Nieruchomości · Biznes · Reputacja · Wzory pism · Kancelarie.
+3. `npm run tax:audit` i `npm run links:audit` — obydwa muszą kończyć się zielono.
+4. Przy zmianie w `BaseLayout`: sprawdzić `<title>`, `description`, `og:image` i `ld+json`
+   na **trzech typach stron** — artykule, kategorii i stronie głównej.
+
+**Skąd ta reguła.** Wzięła się z ogrzeje.pl: 2026-09-10 przeniesienie flagowej sekcji do
+`CATEGORIES` przestawiło ją w menu z pierwszej pozycji na trzecią i poszło na produkcję.
+Weryfikacja sprawdzała wtedy, czy kategorie zwracają 200 i czy artykuły trafiają do właściwych
+listingów — czyli czy mechanizm działa, a nie jak wygląda strona. Tutaj kolejność ocalała
+przypadkiem: `categories.ts` był przepisywany w miejscu, więc nic się nie przesunęło.
+
 ## SEO techniczne — reguły, których łamanie było niewidoczne
 
 Spisane po audycie z 2026-09-10. Każda z tych rzeczy była zepsuta i **żadnej nie dało się
