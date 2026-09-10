@@ -205,6 +205,64 @@ wyjściowy osobno — to one mają moc rozprowadzać. Sprawdza też linki do art
 datą: publikowanie z wyprzedzeniem zachęca do linkowania w przód, a taki link oddaje 404 do
 dnia publikacji celu.
 
+## SEO techniczne — reguły, których łamanie było niewidoczne
+
+Spisane po audycie z 2026-09-10. Każda z tych rzeczy była zepsuta i **żadnej nie dało się
+zauważyć, czytając stronę** — dlatego mają tu być regułą, a nie wiedzą plemienną.
+
+**Mierz to, co widzi Google, nie frontmatter.** `<title>` powstaje z pola `title`, więc
+sprawdzanie długości w pliku `.mdx` nie mówi nic, jeżeli layout coś dokleja. Do artykułów
+sufiks `" – lexpraktyk.pl"` był doklejany i zjadał 16 znaków, przez co 38 z 39 tytułów
+przekraczało limit — mimo że w plikach wyglądały poprawnie. Sufiks zostaje na stronie
+głównej i listingach, artykuły go nie mają.
+
+- **Tytuł: do 60 znaków w renderowanym `<title>`.** Antywzorce i punkt odniesienia — sekcja
+  „Styl artykułów" niżej.
+- **Opis: 120–160 znaków.** Powyżej ucina się w wynikach. Przy audycie 32 artykuły miały
+  ponad 160, najdłuższy 230.
+
+**Sekcja „Najczęstsze pytania" to nie tylko redakcja — to `FAQPage`.** `utils/schema.ts`
+parsuje ją z treści artykułu, więc jej format jest kontraktem, nie stylistyką: nagłówek
+`## Najczęstsze pytania`, pod nim pary `**pytanie**` i akapit odpowiedzi. Zmiana formatu
+cicho wyłącza dane strukturalne. Nic nie trzeba dopisywać do frontmattera — i właśnie
+dlatego schema nie może rozjechać się z tekstem.
+
+Strony artykułów wystawiają `Article`, `BreadcrumbList` i `FAQPage`; każda strona serwisu
+dokłada `Organization`.
+
+**og:image musi wskazywać na istniejący plik i być adresem absolutnym.** Przez wiele miesięcy
+wskazywał na `/og-default.jpg`, którego nigdy nie było — czyli każde udostępnienie linku szło
+bez obrazka i nikt tego nie widział, bo strona wyglądała normalnie. Zasady:
+
+- do og:image trafia **wyłącznie okładka z naszego sklepu**; zastępczy obrazek z picsum.photos
+  jest dobry na podgląd w dev, ale nie może pojechać w świat jako oficjalna miniatura,
+- gdy okładki nie ma, **tagu nie wypisujemy wcale** — brak pola jest lepszy niż pole prowadzące
+  w 404. Dlatego OG piszemy wprost w `BaseLayout`, a nie przez `astro-seo`: jego `basic`
+  wymaga pola image i strona bez okładki dostawała pusty `<meta property="og:image" content>`,
+- artykuły mają `og:type="article"` plus `article:published_time` i `article:author`.
+
+**Linki do kategorii wyłącznie przez `categoryUrl()`** z `utils/urls.ts`. Kategoria jest
+zbiorem, więc kanonicznie ma końcowy slash; ręcznie sklejany `/${slug}` kosztuje 301 przy
+każdym kliknięciu. Ten sam błąd naprawiano wcześniej na stronie 404 i wrócił w breadcrumbie
+artykułu — stąd pomocnik zamiast zasady do zapamiętania.
+
+**Okładki: kanoniczny zbiór żyje na serwerze**, w `public_html/images/covers`. Deploy pobiera
+go przed buildem i odsyła po nim, więc kopia w repo tylko się starzeje — była tam ostatnio
+z 36 plikami, z czego 10 z ogrzeje.pl, i żaden nie pasował do obecnych artykułów. Katalog jest
+w `.gitignore`. Lokalnie okładki spadają na picsum.photos i to jest normalne.
+
+**Obrazy nad zgięciem nie są leniwe.** Okładka artykułu i wyróżniony wpis na stronie głównej
+dostają `fetchpriority="high"`; karty w listingach `loading="lazy"` i `decoding="async"`.
+Wszystkie mają `width="800" height="450"`.
+
+**Fonty ładowane nieblokująco** — arkusz Google Fonts przez `media="print"` + `onload`,
+z pełnym `<link>` w `<noscript>`.
+
+### Czego audyt nie wykrył, bo nie da się z kodu
+
+Zgłoszenie przepisanych URL-i do ponownego zaindeksowania w Search Console. Po każdej większej
+przeróbce artykułu trzeba to zrobić ręcznie.
+
 ## Styl artykułów
 
 - **Naturalny język** — pisz jak człowiek do człowieka, nie jak ustawa do czytelnika. Żadnych "niniejszym", "w związku z powyższym", "należy wskazać iż."
