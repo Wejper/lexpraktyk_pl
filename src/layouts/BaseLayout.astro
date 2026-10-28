@@ -44,8 +44,11 @@ const year = new Date().getFullYear();
       gtag('config', 'G-256G5KSVZH');
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- favicon.ico to prawdziwy ICO 16/32/48 (wcześniej PNG 192×192 z rozszerzeniem .ico).
+         Bez SVG w head: znak „l” to krój Instrument Serif, a ikona nie ładuje czcionek. -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     {/* Fonty ładowane nieblokująco: arkusz z Google Fonts stał przed treścią i opóźniał
