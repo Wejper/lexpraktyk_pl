@@ -3,8 +3,8 @@
 Priority: high-volume search queries with real legal pain behind them, in the three site categories
 (Nieruchomości / Biznes / Reputacja). Titles keyword-first, matching real search phrasing.
 
-Style rules: see README (natural language, blockquote for the key warning, Podstawa prawna with Dz.U. refs).
-**Length scales with query competitiveness** — niche 750–1000 words, contested 1200+ (README § Styl artykułów).
+Style rules: skill `.claude/skills/artykul` (natural language, blockquote for the key warning, Podstawa prawna with Dz.U. refs).
+**Length scales with query competitiveness** — niche 750–1000 words, contested 1200+ (skill `artykul`).
 Publishing: future `publishDate` + daily 05:00 UTC rebuild = auto-publish; preview at `/preview/[slug]`.
 
 ## Prioritisation basis (Search Console, 27 May – 18 Aug 2026)
