@@ -46,6 +46,7 @@ const schemas = [
     image: ownCover,
     author: authorName,
     publishDate: article.data.publishDate,
+    updatedDate: article.data.updatedDate,
   }),
   breadcrumbSchema([
     { name: 'lexpraktyk.pl', url: '/' },
@@ -97,6 +98,9 @@ const schemas = [
       <div>
         <div style="font-weight:500; font-size:14px;">{authorName}</div>
         <time class="t-mono">{article.data.publishDate.toLocaleDateString('pl-PL')}</time>
+        {article.data.updatedDate && (
+          <span class="t-mono"> · ostatnia aktualizacja <time datetime={article.data.updatedDate.toISOString().slice(0, 10)}>{article.data.updatedDate.toLocaleDateString('pl-PL')}</time></span>
+        )}
       </div>
       <div style="flex:1;"></div>
       <div class="article-header-actions" style="display:flex; gap:6px;">

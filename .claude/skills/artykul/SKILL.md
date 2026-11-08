@@ -51,8 +51,11 @@ grep -h '^title:' src/content/articles/*.mdx
 
 ## Podstawy prawne — obowiązkowo
 
-Każde twierdzenie prawne ma oparcie w realnym przepisie. Cytuj naturalnie w tekście
-(„art. 17 RODO daje Ci 30 dni…”) albo zbierz w sekcji „Podstawa prawna” na końcu.
+Każde twierdzenie prawne ma oparcie w realnym przepisie, wskazanym tak dokładnie, żeby czytelnik
+mógł je sam sprawdzić: akt, artykuł, paragraf, ustęp. Podawaj przepis w nawiasie po prostym zdaniu
+i zbierz wszystkie w sekcji „Podstawa prawna” na końcu (pełna nazwa aktu, Dz.U., link). Linki do ustaw tylko na polskie strony rządowe:
+ISAP (`isap.sejm.gov.pl`), `dziennikustaw.gov.pl`, `monitorpolski.gov.pl`. Akty unijne, np. RODO: polska wersja w EUR-Lex.
+Język wokół przepisów prosty jak dla dziecka: zasady w skillu `redaktor-naczelny`.
 Przykłady: Kodeks cywilny (Dz.U. 1964 nr 16 poz. 93), Kodeks karny (Dz.U. 1997 nr 88 poz. 553),
 RODO (Rozporządzenie UE 2016/679), ustawa o ochronie danych osobowych (Dz.U. 2018 poz. 1000).
 
@@ -104,6 +107,16 @@ Data przyszła → wpis wchodzi sam przy buildzie 05:00 UTC; podgląd `/preview/
 ```sh
 npm run tax:audit && npm run links:audit
 ```
+
+Potem dwa przeglądy, w tej kolejności:
+
+1. `redaktor-prawny`: przepisy, terminy, kwoty, orzecznictwo.
+2. `redaktor-naczelny`: język, przystępność, formatowanie. Jeśli zmienił przepisy, kwoty, terminy
+   albo wnioski, wraca do redaktora prawnego.
+
+`published: true` dopiero po zatwierdzeniu przez obu redaktorów i autora.
+
+**Aktualizacja opublikowanego wpisu** (zmiana faktów, liczb, przepisów, treści): `publishDate` zostaje bez zmian, dopisz `updatedDate` z dniem aktualizacji.
 
 Po większej przeróbce opublikowanego artykułu: przypomnij autorowi o ręcznym zgłoszeniu URL-a
 do ponownej indeksacji w Search Console.

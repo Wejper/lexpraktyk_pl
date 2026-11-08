@@ -18,7 +18,7 @@ export const GET: APIRoute = async () => {
   const urls = [
     ...staticPages.map(({ url }) => `<url><loc>${SITE}${url}</loc></url>`),
     ...articles.map(a => {
-      const lastmod = a.data.publishDate.toISOString().slice(0, 10);
+      const lastmod = (a.data.updatedDate ?? a.data.publishDate).toISOString().slice(0, 10);
       return `<url><loc>${SITE}/artykuly/${a.id}</loc><lastmod>${lastmod}</lastmod></url>`;
     }),
   ];

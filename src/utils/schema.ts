@@ -33,9 +33,10 @@ type ArticleInput = {
   image?: string;
   author?: string;
   publishDate: Date;
+  updatedDate?: Date;
 };
 
-export function articleSchema({ title, description, url, image, author, publishDate }: ArticleInput) {
+export function articleSchema({ title, description, url, image, author, publishDate, updatedDate }: ArticleInput) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -43,6 +44,8 @@ export function articleSchema({ title, description, url, image, author, publishD
     description,
     mainEntityOfPage: { '@type': 'WebPage', '@id': absolute(url) },
     datePublished: publishDate.toISOString().slice(0, 10),
+    ...(updatedDate ? { dateModified: updatedDate.toISOString().slice(0, 10) } : {}),
+    // dateModified tylko z pola updatedDate; data builda byłaby nieprawdą odświeżaną codziennie.
     // Bez osobnego pola w schemacie treści nie mamy daty modyfikacji — podawanie tu
     // daty builda byłoby nieprawdą odświeżaną codziennie, więc jej nie ma.
     // Każdy artykuł ma personę w frontmatterze; bez niej autorem jest wydawca, nie fikcyjna „Redakcja”.

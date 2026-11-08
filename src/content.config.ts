@@ -7,6 +7,7 @@ const articles = defineCollection({
     title: z.string(),
     description: z.string(),
     publishDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
     published: z.boolean().default(false),
     cover: z.string().optional(),
     coverQuery: z.string().optional(),

@@ -6,6 +6,8 @@ Strategia, monetyzacja, stan: `README.md`. Backlog i priorytety tematów: `ARTIC
 
 Skille projektu (`.claude/skills/`) — wczytaj, gdy zadanie pasuje:
 - `artykul` — pisanie, poprawianie, tytuły, podstawy prawne, frontmatter, dobór tematu
+- `redaktor-prawny` — przegląd merytoryczny przed publikacją: przepisy, terminy, kwoty, orzecznictwo
+- `redaktor-naczelny` — przegląd języka, przystępności i formatowania przed publikacją
 - `weryfikacja-zmian` — zanim zmiana w layoucie, kategoriach, URL-ach lub SEO pójdzie na `main`
 
 Bliźniaczy serwis: `../ogrzeje_pl` (ten sam szkielet). Reguły SEO technicznego są wspólne —
