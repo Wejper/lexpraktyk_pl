@@ -45,7 +45,8 @@ export function articleSchema({ title, description, url, image, author, publishD
     datePublished: publishDate.toISOString().slice(0, 10),
     // Bez osobnego pola w schemacie treści nie mamy daty modyfikacji — podawanie tu
     // daty builda byłoby nieprawdą odświeżaną codziennie, więc jej nie ma.
-    author: { '@type': 'Person', name: author ?? 'Redakcja lexpraktyk.pl' },
+    // Każdy artykuł ma personę w frontmatterze; bez niej autorem jest wydawca, nie fikcyjna „Redakcja”.
+    author: author ? { '@type': 'Person', name: author } : publisher,
     publisher,
     ...(image ? { image: absolute(image) } : {}),
     inLanguage: 'pl-PL',
